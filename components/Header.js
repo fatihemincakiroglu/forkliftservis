@@ -8,7 +8,6 @@ import Icon from "@/components/Icons";
 const links = [
   { href: "/hizmetlerimiz", label: "Hizmetlerimiz" },
   { href: "/yedek-parca", label: "Yedek Parça" },
-  { href: "/markalar", label: "Markalar" },
   { href: "/forklift-servisi", label: "Bölgeler" },
   { href: "/sss", label: "S.S.S." },
   { href: "/iletisim", label: "İletişim" },

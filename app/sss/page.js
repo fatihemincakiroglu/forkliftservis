@@ -1,4 +1,4 @@
-import { faqs } from "@/lib/brands";
+import { faqs } from "@/lib/faqs";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, FaqList } from "@/components/Seo";

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { cities } from "@/lib/locations";
+import { cities, regionHref } from "@/lib/locations";
 
 export default function Footer() {
   return (
@@ -62,7 +62,7 @@ export default function Footer() {
             <ul className="footer-list">
               {cities.slice(0, 9).map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/forklift-servisi/${c.slug}`}>
+                  <Link href={regionHref(c.slug)}>
                     {c.name} Forklift Servisi
                   </Link>
                 </li>
@@ -81,9 +81,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/hizmetlerimiz">Hizmetlerimiz</Link>
-              </li>
-              <li>
-                <Link href="/markalar">Markalar</Link>
               </li>
               <li>
                 <Link href="/sss">Sıkça Sorulan Sorular</Link>

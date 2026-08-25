@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { services, serviceGroups } from "@/lib/services";
 import { site, process } from "@/lib/site";
-import { cities } from "@/lib/locations";
+import { cities, regionHref } from "@/lib/locations";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, LinkChips } from "@/components/Seo";
 import Icon, { ForkliftIllustration } from "@/components/Icons";
@@ -113,7 +113,7 @@ export default function HizmetlerPage() {
           </div>
           <LinkChips
             items={cities.map((c) => ({
-              href: `/forklift-servisi/${c.slug}`,
+              href: regionHref(c.slug),
               label: `${c.name} forklift servisi`,
             }))}
           />

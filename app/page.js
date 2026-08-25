@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { site, faults, process, maintenanceScope } from "@/lib/site";
 import { services } from "@/lib/services";
-import { brands, faqs } from "@/lib/brands";
-import { cities, titleize } from "@/lib/locations";
+import { faqs } from "@/lib/faqs";
+import { cities, titleize, regionHref } from "@/lib/locations";
 import { CtaBand } from "@/components/CtaBand";
 import { FaqList, LinkChips } from "@/components/Seo";
 import Icon, { ForkliftIllustration } from "@/components/Icons";
@@ -318,7 +318,7 @@ export default function Home() {
           </div>
           <LinkChips
             items={cities.map((c) => ({
-              href: `/forklift-servisi/${c.slug}`,
+              href: regionHref(c.slug),
               label: `${c.name} forklift servisi`,
             }))}
           />
@@ -330,7 +330,7 @@ export default function Home() {
               </p>
               <LinkChips
                 items={istanbul.districts.map((d) => ({
-                  href: `/forklift-servisi/istanbul/${d}`,
+                  href: regionHref(d),
                   label: titleize(d),
                 }))}
               />
@@ -350,12 +350,11 @@ export default function Home() {
               arayın; parça temini mümkünse net bir süre veririz.
             </p>
           </div>
-          <LinkChips
-            items={brands.map((b) => ({
-              href: `/markalar/${b.slug}`,
-              label: `${b.name} forklift servisi`,
-            }))}
-          />
+          <div className="brands">
+            {site.brands.map((b) => (
+              <span key={b}>{b}</span>
+            ))}
+          </div>
         </div>
       </section>
 

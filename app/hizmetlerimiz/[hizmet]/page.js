@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services, getService } from "@/lib/services";
-import { cities } from "@/lib/locations";
+import { cities, regionHref } from "@/lib/locations";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, JsonLd, LinkChips, serviceJsonLd } from "@/components/Seo";
@@ -121,7 +121,7 @@ export default function ServicePage({ params }) {
           </div>
           <LinkChips
             items={cities.map((c) => ({
-              href: `/forklift-servisi/${c.slug}`,
+              href: regionHref(c.slug),
               label: `${c.name} forklift servisi`,
             }))}
           />

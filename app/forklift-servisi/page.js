@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { cities, otherCities, titleize } from "@/lib/locations";
+import { cities, otherCities, titleize, regionHref } from "@/lib/locations";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, LinkChips } from "@/components/Seo";
@@ -75,7 +75,7 @@ export default function BolgelerPage() {
                   )}
                   <Link
                     className="card-link"
-                    href={`/forklift-servisi/${c.slug}`}
+                    href={regionHref(c.slug)}
                   >
                     {c.name} sayfasına git <Icon name="ok" size={16} />
                   </Link>

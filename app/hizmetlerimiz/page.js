@@ -12,7 +12,7 @@ import Icon from "@/components/Icons";
 import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
-  title: "Forklift Tamiri ve Periyodik Bakım | Hizmetlerimiz",
+  title: "Forklift Tamiri ve Periyodik Bakım",
   description:
     "Forklift motor, şanzıman, hidrolik ve elektronik kart tamiri; akülü, dizel ve LPG'li forklift servisi ile periyodik bakım. Türkiye geneli yerinde servis.",
   alternates: { canonical: "/hizmetlerimiz" },

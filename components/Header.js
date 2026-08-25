@@ -22,7 +22,7 @@ export default function Header() {
         <div className="shell topbar-inner">
           <span className="topbar-note">
             <span className="topbar-dot" aria-hidden="true" />
-            {site.coverage} · yerinde mobil servis
+            {site.coverage}, yerinde mobil servis
           </span>
           <span className="topbar-mail">
             <a href={`mailto:${site.email}`}>

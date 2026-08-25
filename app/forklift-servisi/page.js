@@ -12,7 +12,7 @@ import {
 import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
-  title: "Forklift Servisi | Türkiye Geneli Yerinde Tamir ve Bakım",
+  title: "Forklift Servisi Verdiğimiz Bölgeler",
   description:
     "81 ilde forklift servisi. İstanbul, Kocaeli, Bursa, Ankara, İzmir ve Marmara genelinde yerinde forklift tamiri, periyodik bakım ve yedek parça.",
   alternates: { canonical: "/forklift-servisi" },

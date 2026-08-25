@@ -151,7 +151,7 @@ export default function YedekParca() {
         </div>
       </section>
 
-      <CtaBand title="Aradığınız parçayı bulalım" note="Parça talebi · Teklif" />
+      <CtaBand title="Aradığınız parçayı bulalım" note="Parça talebi ve teklif" />
 
       <JsonLd
         data={serviceJsonLd({

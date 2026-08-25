@@ -51,7 +51,7 @@ export default function ServiceForm() {
   const sendMail = () => {
     if (!validate()) return;
     const subject = encodeURIComponent(
-      `${form.konu} — ${form.firma || form.ad}`
+      `${form.konu} | ${form.firma || form.ad}`
     );
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${encodeURIComponent(
       buildText()

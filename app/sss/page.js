@@ -5,7 +5,7 @@ import { FaqList, JsonLd, webPageJsonLd } from "@/components/Seo";
 import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
-  title: "Sıkça Sorulan Sorular | Forklift Servisi",
+  title: "Sıkça Sorulan Sorular",
   description:
     "Forklift servis ücreti, müdahale süresi, bakım aralığı, garanti ve yedek parça hakkında en çok sorulan soruların yanıtları.",
   alternates: { canonical: "/sss" },

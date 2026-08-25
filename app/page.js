@@ -9,7 +9,7 @@ import Icon, { ForkliftIllustration } from "@/components/Icons";
 import Figure, { FigureStrip } from "@/components/Figure";
 
 export const metadata = {
-  // absolute: layout'taki "%s — Site Adı" şablonunu atlar,
+  // absolute: layout'taki "%s | Forklift Servis" şablonunu atlar,
   // başlık tam olarak aşağıda yazdığı gibi görünür.
   title: { absolute: "Forklift Servis ve Forklift Tamir Hizmeti" },
   description:
@@ -31,7 +31,7 @@ export default function Home() {
         <ForkliftIllustration className="hero-art" />
         <div className="shell hero-grid">
           <div>
-            <p className="eyebrow">{site.coverage} · yerinde mobil servis</p>
+            <p className="eyebrow">{site.coverage}, yerinde mobil servis</p>
             <h1 className="h1">
               Türkiye geneli <em>forklift servisi</em>
             </h1>
@@ -82,7 +82,7 @@ export default function Home() {
             </div>
             <div className="plate-row">
               <span className="plate-key">Kapsam</span>
-              <span className="plate-val">Tamir · Periyodik bakım · Yedek parça</span>
+              <span className="plate-val">Tamir, periyodik bakım ve yedek parça</span>
             </div>
             <div className="plate-row">
               <span className="plate-key">Saha</span>
@@ -91,7 +91,7 @@ export default function Home() {
             <div className="plate-row">
               <span className="plate-key">Makine tipi</span>
               <span className="plate-val">
-                Dizel, LPG, akülü forklift · transpalet · istif makinesi
+                Dizel, LPG, akülü forklift, transpalet ve istif makinesi
               </span>
             </div>
             <div className="plate-row">
@@ -147,7 +147,7 @@ export default function Home() {
               </span>
               <span className="stat-value">Tüm markalar</span>
               <span className="stat-label">
-                Dizel, LPG ve akülü forklift · transpalet · istif makinesi
+                Dizel, LPG ve akülü forklift, transpalet ve istif makinesi
               </span>
             </div>
             <div className="stat">
@@ -189,7 +189,7 @@ export default function Home() {
               <span className="card-icon">
                 <Icon name="bakim" size={26} />
               </span>
-              <span className="card-code">A · Servis</span>
+              <span className="card-code">Servis</span>
               <h3 className="h3">Forklift tamiri ve periyodik bakım</h3>
               <p>
                 Hidrolik, motor, şanzıman, elektrik ve mast grubunda arıza
@@ -205,7 +205,7 @@ export default function Home() {
               <span className="card-icon">
                 <Icon name="parca" size={26} />
               </span>
-              <span className="card-code">B · Parça</span>
+              <span className="card-code">Yedek Parça</span>
               <h3 className="h3">Forklift yedek parça</h3>
               <p>
                 Orijinal ve muadil parça. Hızlı hareket eden filtre, balata,
@@ -239,21 +239,21 @@ export default function Home() {
                 alt: "3 tonluk dizel forklift servisi",
                 width: 990,
                 height: 590,
-                caption: "3 ton dizel — depo ve üretim tesisleri",
+                caption: "3 ton dizel, depo ve üretim tesisleri",
               },
               {
                 src: "/gorseller/dizel-forklift-5-ton.webp",
                 alt: "5 tonluk dizel forklift bakımı",
                 width: 990,
                 height: 590,
-                caption: "5 ton dizel — açık saha ve sanayi",
+                caption: "5 ton dizel, açık saha ve sanayi",
               },
               {
                 src: "/gorseller/dizel-forklift-7-ton.webp",
                 alt: "7 tonluk ağır tonaj forklift tamiri",
                 width: 990,
                 height: 590,
-                caption: "7 ton ve üzeri — liman ve ağır yük",
+                caption: "7 ton ve üzeri, liman ve ağır yük",
               },
             ]}
           />

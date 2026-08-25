@@ -3,7 +3,7 @@ import Icon from "@/components/Icons";
 
 export function CtaBand({
   title = "Forklift durduysa vakit kaybetmeyin",
-  note = "Arıza bildirimi · 7/24 acil hat",
+  note = "Arıza bildirimi ve 7/24 acil hat",
 }) {
   return (
     <section className="cta-band">

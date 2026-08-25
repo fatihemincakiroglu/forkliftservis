@@ -89,7 +89,7 @@ export default function ServiceView({ service: s }) {
         <div className="shell">
           <div className="section-head">
             <p className="eyebrow">Nerede hizmet veriyoruz</p>
-            <h2 className="h2">{s.name} — bölgeler</h2>
+            <h2 className="h2">{s.name} verdiğimiz bölgeler</h2>
             <p className="lede">
               Türkiye genelinde yerinde servis veriyoruz. Bulunduğunuz ildeki
               servis ayrıntıları için bölge sayfasına bakabilirsiniz.

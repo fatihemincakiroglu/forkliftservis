@@ -27,7 +27,7 @@ export function generateMetadata({ params }) {
       region.type === "city" ? region.citySlug : region.districtSlug
     );
     return {
-      title: { absolute: `${title} | Forklift Tamiri ve Bakımı` },
+      title,
       description,
       alternates: { canonical: url },
       openGraph: { title, description, url },
@@ -37,7 +37,7 @@ export function generateMetadata({ params }) {
   const service = getService(params.slug);
   if (service) {
     return {
-      title: { absolute: `${service.title} | Türkiye Geneli Yerinde Servis` },
+      title: service.name,
       description: service.description,
       alternates: { canonical: serviceHref(service.slug) },
       openGraph: {

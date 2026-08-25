@@ -40,7 +40,7 @@ export default function FloatingContact() {
             <strong>Size yardımcı olalım</strong>
             <p>
               Forklift servis hizmetimiz için yardımcı olmak isteriz. Arıza,
-              periyodik bakım veya yedek parça — yazın ya da arayın.
+              periyodik bakım veya yedek parça, yazın ya da arayın.
             </p>
             <a
               className="float-bubble-cta"

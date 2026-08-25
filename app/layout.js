@@ -9,7 +9,7 @@ export const metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: "Forklift Servis ve Forklift Tamir Hizmeti",
-    template: `%s — ${site.name}`,
+    template: `%s | ${site.titleSuffix}`,
   },
   description:
     "Uzman forklift servis ve forklift tamir hizmeti ile arızalara hızlı çözüm sunuyoruz. Periyodik bakım, acil servis ve garantili onarım desteği.",

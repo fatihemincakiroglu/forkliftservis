@@ -128,13 +128,13 @@ export default function RegionView({ region: r }) {
               <div className="plate-row">
                 <span className="plate-key">Kapsam</span>
                 <span className="plate-val">
-                  Tamir · Periyodik bakım · Yedek parça
+                  Tamir, periyodik bakım ve yedek parça
                 </span>
               </div>
               <div className="plate-row">
                 <span className="plate-key">Makine</span>
                 <span className="plate-val">
-                  Dizel, LPG, akülü forklift · transpalet · istif makinesi
+                  Dizel, LPG, akülü forklift, transpalet ve istif makinesi
                 </span>
               </div>
               <div className="plate-row">

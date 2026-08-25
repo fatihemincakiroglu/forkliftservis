@@ -83,6 +83,9 @@ export default function Footer() {
                 <Link href="/hizmetlerimiz">Hizmetlerimiz</Link>
               </li>
               <li>
+                <Link href="/referanslar">Referanslarımız</Link>
+              </li>
+              <li>
                 <Link href="/sss">Sıkça Sorulan Sorular</Link>
               </li>
               <li>

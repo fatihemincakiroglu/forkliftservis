@@ -3,6 +3,13 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
 
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "vinc.net" },
+      { protocol: "https", hostname: "www.vinc.net" },
+    ],
+  },
+
   // Eski URL yapısından yenisine kalıcı yönlendirme.
   // Google eski adresleri taradıysa değeri yeni adrese aktarır.
   async redirects() {

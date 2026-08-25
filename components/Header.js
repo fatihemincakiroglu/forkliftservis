@@ -9,6 +9,7 @@ const links = [
   { href: "/hizmetlerimiz", label: "Hizmetlerimiz" },
   { href: "/yedek-parca", label: "Yedek Parça" },
   { href: "/forklift-servisi", label: "Bölgeler" },
+  { href: "/referanslar", label: "Referanslar" },
   { href: "/sss", label: "S.S.S." },
   { href: "/iletisim", label: "İletişim" },
 ];

@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
 import Icon, { WhatsAppIcon } from "@/components/Icons";
+import LocationInput from "@/components/LocationInput";
 
 const AUTO_MS = 7000;
 
@@ -207,15 +208,13 @@ function QuickForm() {
           </select>
         </div>
 
-        <div className="field">
-          <label htmlFor="q-konum">Konum, ilçe</label>
-          <input
-            id="q-konum"
-            value={form.konum}
-            onChange={set("konum")}
-            placeholder="Örn. Başakşehir, İstanbul"
-          />
-        </div>
+        <LocationInput
+          id="q-konum"
+          value={form.konum}
+          onChange={(v) => setForm((f) => ({ ...f, konum: v }))}
+          label="Konum, ilçe veya mahalle"
+          placeholder="Örn. Başakşehir"
+        />
 
         <div className="field-pair">
           <div className="field">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { site } from "@/lib/site";
+import LocationInput from "@/components/LocationInput";
 
 const empty = {
   ad: "",
@@ -11,6 +12,7 @@ const empty = {
   konu: "Arıza / tamir",
   marka: "",
   model: "",
+  konum: "",
   mesaj: "",
 };
 
@@ -32,6 +34,7 @@ export default function ServiceForm() {
       form.eposta && `E-posta: ${form.eposta}`,
       form.marka && `Makine markası: ${form.marka}`,
       form.model && `Model / seri no: ${form.model}`,
+      form.konum && `Makinenin konumu: ${form.konum}`,
       "",
       form.mesaj,
     ]
@@ -134,13 +137,21 @@ export default function ServiceForm() {
         </div>
       </div>
 
+      <LocationInput
+        id="konum"
+        value={form.konum}
+        onChange={(v) => setForm((f) => ({ ...f, konum: v }))}
+        label="Makinenin bulunduğu konum"
+        placeholder="İlçe veya mahalle yazın"
+      />
+
       <div className="field">
         <label htmlFor="mesaj">Arıza veya talep açıklaması *</label>
         <textarea
           id="mesaj"
           value={form.mesaj}
           onChange={update("mesaj")}
-          placeholder="Belirtiler, ne zaman başladı, makinenin bulunduğu il ve ilçe."
+          placeholder="Belirtiler ve ne zaman başladığı."
         />
       </div>
 

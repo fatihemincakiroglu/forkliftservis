@@ -1,7 +1,7 @@
 import { faqs } from "@/lib/faqs";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
-import { Breadcrumbs, FaqList } from "@/components/Seo";
+import { Breadcrumbs, FaqList, JsonLd, webPageJsonLd } from "@/components/Seo";
 import { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
@@ -49,6 +49,16 @@ export default function SssPage() {
       </section>
 
       <CtaBand />
+
+      <JsonLd
+        data={webPageJsonLd({
+          type: "QAPage",
+          name: "Sıkça Sorulan Sorular",
+          description:
+            "Forklift servis ücreti, müdahale süresi, bakım aralığı, garanti ve yedek parça hakkında en çok sorulan soruların yanıtları.",
+          url: "/sss",
+        })}
+      />
     </>
   );
 }

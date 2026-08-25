@@ -1,8 +1,15 @@
 import Link from "next/link";
-import { cities, otherCities, titleize, regionHref } from "@/lib/locations";
+import { cities, otherCities, regionHref } from "@/lib/locations";
+import ServiceNetwork from "@/components/ServiceNetwork";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
-import { Breadcrumbs, LinkChips } from "@/components/Seo";
+import {
+  Breadcrumbs,
+  JsonLd,
+  LinkChips,
+  itemListJsonLd,
+  webPageJsonLd,
+} from "@/components/Seo";
 import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
@@ -13,11 +20,6 @@ export const metadata = {
 };
 
 export default function BolgelerPage() {
-  const grouped = cities.reduce((acc, c) => {
-    (acc[c.region] ||= []).push(c);
-    return acc;
-  }, {});
-
   return (
     <>
       <section className="hero">
@@ -48,43 +50,15 @@ export default function BolgelerPage() {
 
       <div className="hazard" aria-hidden="true" />
 
-      {Object.entries(grouped).map(([region, list], i) => (
-        <section
-          key={region}
-          className={i % 2 === 0 ? "section" : "section section--concrete"}
-        >
-          <div className="shell">
-            <div className="section-head">
-              <p className="eyebrow">{region} Bölgesi</p>
-              <h2 className="h2">{region}’da forklift servisi</h2>
-            </div>
-            <div className="grid grid--3">
-              {list.map((c) => (
-                <article className="card" key={c.slug}>
-                  <span className="card-icon">
-                    <Icon name="konum" size={26} />
-                  </span>
-                  <span className="card-code">{c.region}</span>
-                  <h3 className="h3">{c.name} Forklift Servisi</h3>
-                  <p>{c.sectors}</p>
-                  {c.districts?.length > 0 && (
-                    <p style={{ fontSize: "0.88rem" }}>
-                      {c.districts.length} ilçede servis:{" "}
-                      {c.districts.slice(0, 4).map(titleize).join(", ")}…
-                    </p>
-                  )}
-                  <Link
-                    className="card-link"
-                    href={regionHref(c.slug)}
-                  >
-                    {c.name} sayfasına git <Icon name="ok" size={16} />
-                  </Link>
-                </article>
-              ))}
-            </div>
+      <section className="section">
+        <div className="shell">
+          <div className="section-head">
+            <p className="eyebrow">Bölgeler</p>
+            <h2 className="h2">Düzenli servis rotamızın bulunduğu iller</h2>
           </div>
-        </section>
-      ))}
+          <ServiceNetwork />
+        </div>
+      </section>
 
       <section className="section section--dark">
         <div className="shell">
@@ -105,6 +79,25 @@ export default function BolgelerPage() {
       </section>
 
       <CtaBand />
+
+      <JsonLd
+        data={webPageJsonLd({
+          type: "CollectionPage",
+          name: "Türkiye geneli forklift servisi",
+          description:
+            "81 ilde forklift servisi. Düzenli servis rotamızın bulunduğu iller ve ilçeler.",
+          url: "/forklift-servisi",
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          name: "Forklift servisi verilen iller",
+          items: cities.map((c) => ({
+            name: `${c.name} Forklift Servisi`,
+            href: regionHref(c.slug),
+          })),
+        })}
+      />
     </>
   );
 }

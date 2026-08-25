@@ -2,6 +2,7 @@ import Link from "next/link";
 import { site, partCategories } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import Icon, { ForkliftIllustration } from "@/components/Icons";
+import { Breadcrumbs, JsonLd, itemListJsonLd, serviceJsonLd } from "@/components/Seo";
 
 export const metadata = {
   title: "Forklift Yedek Parça",
@@ -16,6 +17,12 @@ export default function YedekParca() {
       <section className="hero">
         <ForkliftIllustration className="hero-art" />
         <div className="shell">
+          <Breadcrumbs
+            trail={[
+              { href: "/", label: "Anasayfa" },
+              { href: "/yedek-parca", label: "Yedek Parça" },
+            ]}
+          />
           <p className="eyebrow">Yedek parça</p>
           <h1 className="h1">
             Doğru parça, <em>doğru künye</em> ile bulunur
@@ -155,6 +162,24 @@ export default function YedekParca() {
       </section>
 
       <CtaBand title="Aradığınız parçayı bulalım" note="Parça talebi · Teklif" />
+
+      <JsonLd
+        data={serviceJsonLd({
+          name: "Forklift Yedek Parça",
+          description:
+            "Forklift yedek parça: hidrolik, motor, şanzıman, elektrik ve mast grubu parçaları, filtre, akü, lastik.",
+          url: "/yedek-parca",
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          name: "Forklift yedek parça grupları",
+          items: partCategories.map((c) => ({
+            name: c.title,
+            href: "/yedek-parca",
+          })),
+        })}
+      />
     </>
   );
 }

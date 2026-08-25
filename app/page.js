@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { site, faults, process, maintenanceScope } from "@/lib/site";
-import { services } from "@/lib/services";
+import { services, serviceHref } from "@/lib/services";
 import { faqs } from "@/lib/faqs";
-import { cities, titleize, regionHref } from "@/lib/locations";
+import ServiceNetwork from "@/components/ServiceNetwork";
 import { CtaBand } from "@/components/CtaBand";
 import { FaqList, LinkChips } from "@/components/Seo";
 import Icon, { ForkliftIllustration } from "@/components/Icons";
@@ -21,8 +21,6 @@ export const metadata = {
     url: "/",
   },
 };
-
-const istanbul = cities.find((c) => c.slug === "istanbul");
 
 export default function Home() {
   return (
@@ -244,7 +242,7 @@ export default function Home() {
           <div style={{ marginTop: 36 }}>
             <LinkChips
               items={services.map((s) => ({
-                href: `/hizmetlerimiz/${s.slug}`,
+                href: serviceHref(s.slug),
                 label: s.name,
               }))}
             />
@@ -288,7 +286,7 @@ export default function Home() {
               sonuç yazılı raporlanır.
             </p>
             <div className="btn-row">
-              <Link className="btn btn--signal" href="/hizmetlerimiz/forklift-periyodik-bakim">
+              <Link className="btn btn--signal" href="/forklift-periyodik-bakim">
                 Bakım kapsamını gör
               </Link>
             </div>
@@ -305,7 +303,7 @@ export default function Home() {
       </section>
 
       {/* ---------- BÖLGELER ---------- */}
-      <section className="section">
+      <section className="section section--concrete">
         <div className="shell">
           <div className="section-head">
             <p className="eyebrow">Servis ağı</p>
@@ -316,50 +314,12 @@ export default function Home() {
               çıkan bakım kalemleri yer alıyor.
             </p>
           </div>
-          <LinkChips
-            items={cities.map((c) => ({
-              href: regionHref(c.slug),
-              label: `${c.name} forklift servisi`,
-            }))}
-          />
-
-          {istanbul && (
-            <>
-              <p className="eyebrow" style={{ marginTop: 44 }}>
-                İstanbul ilçeleri
-              </p>
-              <LinkChips
-                items={istanbul.districts.map((d) => ({
-                  href: regionHref(d),
-                  label: titleize(d),
-                }))}
-              />
-            </>
-          )}
-        </div>
-      </section>
-
-      {/* ---------- MARKALAR ---------- */}
-      <section className="section section--dark">
-        <div className="shell">
-          <div className="section-head">
-            <p className="eyebrow">Servis verdiğimiz markalar</p>
-            <h2 className="h2">Marka fark etmez, künye numarası yeter</h2>
-            <p className="lede">
-              Aşağıdaki markaların yanı sıra listede olmayan modeller için de
-              arayın; parça temini mümkünse net bir süre veririz.
-            </p>
-          </div>
-          <div className="brands">
-            {site.brands.map((b) => (
-              <span key={b}>{b}</span>
-            ))}
-          </div>
+          <ServiceNetwork />
         </div>
       </section>
 
       {/* ---------- SSS ---------- */}
-      <section className="section section--concrete">
+      <section className="section">
         <div className="shell">
           <div className="section-head">
             <p className="eyebrow">Sıkça sorulan sorular</p>

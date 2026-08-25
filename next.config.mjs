@@ -19,6 +19,12 @@ const nextConfig = {
         destination: "/forklift-servisi-:sehir",
         permanent: true,
       },
+      // /hizmetlerimiz/forklift-motor-tamiri  ->  /forklift-motor-tamiri
+      {
+        source: "/hizmetlerimiz/:slug",
+        destination: "/:slug",
+        permanent: true,
+      },
       // Kaldırılan marka sayfaları
       {
         source: "/markalar",

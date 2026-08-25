@@ -1,9 +1,14 @@
 import Link from "next/link";
-import { services, serviceGroups } from "@/lib/services";
+import { services, serviceGroups, serviceHref } from "@/lib/services";
 import { site, process } from "@/lib/site";
-import { cities, regionHref } from "@/lib/locations";
+import ServiceNetwork from "@/components/ServiceNetwork";
 import { CtaBand } from "@/components/CtaBand";
-import { Breadcrumbs, LinkChips } from "@/components/Seo";
+import {
+  Breadcrumbs,
+  JsonLd,
+  itemListJsonLd,
+  offerCatalogJsonLd,
+} from "@/components/Seo";
 import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
@@ -73,7 +78,7 @@ export default function HizmetlerPage() {
                     <span className="card-code">{s.group}</span>
                     <h3 className="h3">{s.name}</h3>
                     <p>{s.lede}</p>
-                    <Link className="card-link" href={`/hizmetlerimiz/${s.slug}`}>
+                    <Link className="card-link" href={serviceHref(s.slug)}>
                       Ayrıntılara bak <Icon name="ok" size={16} />
                     </Link>
                   </article>
@@ -111,16 +116,22 @@ export default function HizmetlerPage() {
             <p className="eyebrow">Bölgeler</p>
             <h2 className="h2">Nerede hizmet veriyoruz</h2>
           </div>
-          <LinkChips
-            items={cities.map((c) => ({
-              href: regionHref(c.slug),
-              label: `${c.name} forklift servisi`,
-            }))}
-          />
+          <ServiceNetwork showDistricts={false} />
         </div>
       </section>
 
       <CtaBand title="Bakım takviminizi birlikte kuralım" />
+
+      <JsonLd data={offerCatalogJsonLd(services)} />
+      <JsonLd
+        data={itemListJsonLd({
+          name: "Forklift servis hizmetleri",
+          items: services.map((s) => ({
+            name: s.title,
+            href: serviceHref(s.slug),
+          })),
+        })}
+      />
     </>
   );
 }

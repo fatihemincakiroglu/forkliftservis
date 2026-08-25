@@ -1540,3 +1540,265 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   SERVİS AĞI — bölge kartları
+   ============================================================ */
+
+.region-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.region-group {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.region-group:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.section--dark .region-group {
+  background: var(--navy-2);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.region-group-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+.section--dark .region-group-head {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.region-group-icon {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--yellow-soft);
+  color: var(--yellow-dark);
+}
+
+.section--dark .region-group-icon {
+  background: rgba(245, 179, 1, 0.14);
+  color: var(--yellow);
+}
+
+.region-group-title {
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.region-group-count {
+  margin-left: auto;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-mute);
+  background: var(--bg-alt);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.section--dark .region-group-count {
+  color: #a9bccf;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.region-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.region-list li + li {
+  border-top: 1px solid var(--border);
+}
+
+.section--dark .region-list li + li {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.region-list a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 10px 13px 4px;
+  margin-inline: -4px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.96rem;
+  transition: background-color 0.15s ease, padding-left 0.15s ease,
+    color 0.15s ease;
+}
+
+.region-list a:hover {
+  background: var(--yellow-soft);
+  padding-left: 12px;
+  color: var(--yellow-dark);
+}
+
+.section--dark .region-list a {
+  color: #dde6ef;
+}
+
+.section--dark .region-list a:hover {
+  background: rgba(245, 179, 1, 0.11);
+  color: var(--yellow);
+}
+
+.region-list a svg {
+  color: var(--yellow-dark);
+  flex: none;
+  opacity: 0.75;
+}
+
+.section--dark .region-list a svg {
+  color: var(--yellow);
+}
+
+.region-list a:hover svg {
+  opacity: 1;
+}
+
+.region-badge {
+  margin-left: auto;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-mute);
+  background: var(--bg-alt);
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.section--dark .region-badge {
+  color: #8fa4ba;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.region-list a:hover .region-badge {
+  background: #fff;
+  color: var(--yellow-dark);
+}
+
+.section--dark .region-list a:hover .region-badge {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--yellow);
+}
+
+/* ---------- Öne çıkan ilçe paneli ---------- */
+
+.district-panel {
+  margin-top: 22px;
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: clamp(26px, 3.5vw, 38px);
+  color: #e8eef5;
+  position: relative;
+  overflow: hidden;
+}
+
+.district-panel::after {
+  content: "";
+  position: absolute;
+  top: -140px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(
+    circle,
+    rgba(245, 179, 1, 0.14) 0%,
+    transparent 66%
+  );
+  pointer-events: none;
+}
+
+.district-panel-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.district-panel-head h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.district-panel-head p {
+  margin: 3px 0 0;
+  font-size: 0.9rem;
+  color: #a9bccf;
+}
+
+.district-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 0 24px;
+}
+
+.district-grid a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 6px 11px 0;
+  font-size: 0.93rem;
+  text-decoration: none;
+  color: #c3d1e0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transition: color 0.14s ease, padding-left 0.14s ease;
+}
+
+.district-grid a::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--yellow);
+  opacity: 0.5;
+  flex: none;
+  transition: opacity 0.14s ease;
+}
+
+.district-grid a:hover {
+  color: var(--yellow);
+  padding-left: 5px;
+}
+
+.district-grid a:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .district-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 16px;
+  }
+}

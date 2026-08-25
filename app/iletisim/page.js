@@ -1,6 +1,7 @@
 import { site } from "@/lib/site";
 import ServiceForm from "@/components/ServiceForm";
 import Icon, { ForkliftIllustration } from "@/components/Icons";
+import { Breadcrumbs, JsonLd, webPageJsonLd } from "@/components/Seo";
 
 export const metadata = {
   title: "İletişim ve Servis Talebi",
@@ -15,6 +16,12 @@ export default function Iletisim() {
       <section className="hero">
         <ForkliftIllustration className="hero-art" />
         <div className="shell">
+          <Breadcrumbs
+            trail={[
+              { href: "/", label: "Anasayfa" },
+              { href: "/iletisim", label: "İletişim" },
+            ]}
+          />
           <p className="eyebrow">İletişim</p>
           <h1 className="h1">
             Arızayı anlatın, <em>gerisini biz yazalım</em>
@@ -138,6 +145,15 @@ export default function Iletisim() {
           </div>
         </div>
       </section>
+      <JsonLd
+        data={webPageJsonLd({
+          type: "ContactPage",
+          name: "İletişim ve Servis Talebi",
+          description:
+            "Forklift arızası, periyodik bakım veya yedek parça talebi için iletişim bilgileri.",
+          url: "/iletisim",
+        })}
+      />
     </>
   );
 }

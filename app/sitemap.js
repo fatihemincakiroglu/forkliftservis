@@ -1,5 +1,5 @@
 import { site } from "@/lib/site";
-import { services } from "@/lib/services";
+import { services, serviceHref } from "@/lib/services";
 import { regionPages } from "@/lib/locations";
 
 export default function sitemap() {
@@ -22,7 +22,7 @@ export default function sitemap() {
   ];
 
   const servicePages = services.map((s) =>
-    entry(`/hizmetlerimiz/${s.slug}`, 0.8)
+    entry(serviceHref(s.slug), 0.85)
   );
 
   // Bölge sayfaları: /forklift-servisi-istanbul, /forklift-servisi-avcilar ...

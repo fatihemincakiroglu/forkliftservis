@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { WhatsAppButton } from "@/components/CtaBand";
 import { site } from "@/lib/site";
+import { JsonLd, organizationJsonLd, websiteJsonLd } from "@/components/Seo";
 
 export const metadata = {
   metadataBase: new URL(site.url),
@@ -93,10 +94,9 @@ export default function RootLayout({ children }) {
         <main>{children}</main>
         <Footer />
         <WhatsAppButton />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={jsonLd} />
+        <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={websiteJsonLd()} />
       </body>
     </html>
   );

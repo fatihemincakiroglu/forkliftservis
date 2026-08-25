@@ -1,6 +1,7 @@
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import Icon, { ForkliftIllustration } from "@/components/Icons";
+import { Breadcrumbs, JsonLd, webPageJsonLd } from "@/components/Seo";
 
 export const metadata = {
   title: "Hakkımızda",
@@ -15,6 +16,12 @@ export default function Hakkimizda() {
       <section className="hero">
         <ForkliftIllustration className="hero-art" />
         <div className="shell">
+          <Breadcrumbs
+            trail={[
+              { href: "/", label: "Anasayfa" },
+              { href: "/hakkimizda", label: "Hakkımızda" },
+            ]}
+          />
           <p className="eyebrow">Hakkımızda</p>
           <h1 className="h1">
             Sahada <em>{new Date().getFullYear() - site.foundedYear} yıl</em>
@@ -158,6 +165,16 @@ export default function Hakkimizda() {
       </section>
 
       <CtaBand />
+
+      <JsonLd
+        data={webPageJsonLd({
+          type: "AboutPage",
+          name: "Hakkımızda",
+          description:
+            "Forklift servis ve yedek parça alanında saha deneyimi, çalışma ilkeleri ve firma künyesi.",
+          url: "/hakkimizda",
+        })}
+      />
     </>
   );
 }

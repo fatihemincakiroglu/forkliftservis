@@ -1,5 +1,5 @@
 import { site } from "@/lib/site";
-import Icon, { WhatsAppIcon } from "@/components/Icons";
+import Icon from "@/components/Icons";
 
 export function CtaBand({
   title = "Forklift durduysa vakit kaybetmeyin",
@@ -18,22 +18,5 @@ export function CtaBand({
         </div>
       </div>
     </section>
-  );
-}
-
-export function WhatsAppButton() {
-  const text = encodeURIComponent(
-    "Merhaba, forklift arızası için servis talep etmek istiyorum."
-  );
-  return (
-    <a
-      className="wa-float"
-      href={`https://wa.me/${site.whatsapp}?text=${text}`}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <WhatsAppIcon size={18} />
-      WhatsApp
-    </a>
   );
 }

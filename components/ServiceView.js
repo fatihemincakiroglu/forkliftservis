@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd, LinkChips, serviceJsonLd } from "@/components/Seo";
 import Icon from "@/components/Icons";
+import Figure from "@/components/Figure";
 import PageHeader from "@/components/PageHeader";
 
 export default function ServiceView({ service: s }) {
@@ -36,6 +37,17 @@ export default function ServiceView({ service: s }) {
           </div>
 
           <div>
+            {s.image && (
+              <Figure
+                src={s.image.src}
+                alt={s.image.alt}
+                width={s.image.width}
+                height={s.image.height}
+                caption={s.image.caption}
+                priority
+                className="mb-24"
+              />
+            )}
             <p className="eyebrow">İşlem kapsamı</p>
             <ul className="checklist" style={{ gridTemplateColumns: "1fr" }}>
               {s.scope.map((x) => (

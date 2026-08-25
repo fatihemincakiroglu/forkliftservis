@@ -6,6 +6,7 @@ import ServiceNetwork from "@/components/ServiceNetwork";
 import { CtaBand } from "@/components/CtaBand";
 import { FaqList, LinkChips } from "@/components/Seo";
 import Icon, { ForkliftIllustration } from "@/components/Icons";
+import Figure, { FigureStrip } from "@/components/Figure";
 
 export const metadata = {
   // absolute: layout'taki "%s — Site Adı" şablonunu atlar,
@@ -219,6 +220,46 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------- MAKİNE TİPLERİ ---------- */}
+      <section className="section section--concrete">
+        <div className="shell">
+          <div className="section-head">
+            <p className="eyebrow">Makine tipleri</p>
+            <h2 className="h2">Her tonajda ve her yakıt tipinde servis</h2>
+            <p className="lede">
+              1,5 tonluk depo içi makinelerden 7 ton ve üzeri ağır tonaj
+              forkliftlere kadar; dizel, LPG ve akülü modellerin tamamında.
+            </p>
+          </div>
+
+          <FigureStrip
+            items={[
+              {
+                src: "/gorseller/dizel-forklift-3-ton.webp",
+                alt: "3 tonluk dizel forklift servisi",
+                width: 990,
+                height: 590,
+                caption: "3 ton dizel — depo ve üretim tesisleri",
+              },
+              {
+                src: "/gorseller/dizel-forklift-5-ton.webp",
+                alt: "5 tonluk dizel forklift bakımı",
+                width: 990,
+                height: 590,
+                caption: "5 ton dizel — açık saha ve sanayi",
+              },
+              {
+                src: "/gorseller/dizel-forklift-7-ton.webp",
+                alt: "7 tonluk ağır tonaj forklift tamiri",
+                width: 990,
+                height: 590,
+                caption: "7 ton ve üzeri — liman ve ağır yük",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
       {/* ---------- ARIZA KALEMLERİ ---------- */}
       <section className="section section--dark">
         <div className="shell">
@@ -292,13 +333,23 @@ export default function Home() {
             </div>
           </div>
 
-          <ul className="checklist">
-            {maintenanceScope.map((m) => (
-              <li key={m}>
-                <span>{m}</span>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <Figure
+              src="/gorseller/forklift-mast-hidrolik-bakim.webp"
+              alt="Forklift mast ve hidrolik sistem periyodik bakımı"
+              width={1200}
+              height={1200}
+              caption="Mast grubu, hidrolik hatlar ve emniyet etiketlerinin kontrolü"
+              className="mb-24"
+            />
+            <ul className="checklist" style={{ gridTemplateColumns: "1fr" }}>
+              {maintenanceScope.map((m) => (
+                <li key={m}>
+                  <span>{m}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

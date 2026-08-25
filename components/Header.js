@@ -24,7 +24,7 @@ export default function Header() {
             <span className="topbar-dot" aria-hidden="true" />
             {site.coverage} · yerinde mobil servis
           </span>
-          <span>
+          <span className="topbar-mail">
             <a href={`mailto:${site.email}`}>
               <Icon name="eposta" size={14} />
               {site.email}
@@ -39,9 +39,8 @@ export default function Header() {
             <span className="brand-mark" aria-hidden="true">
               <Icon name="forklift" size={26} />
             </span>
-            <span>
+            <span className="brand-text">
               <span className="brand-name">{site.name}</span>
-              <br />
               <span className="brand-sub">{site.domain}</span>
             </span>
           </Link>
@@ -54,7 +53,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div className="header-actions">
             <a className="nav-cta" href={`tel:${site.phoneHref}`}>
               <Icon name="telefon" size={16} />
               {site.phoneDisplay}

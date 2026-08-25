@@ -2,6 +2,7 @@ import Link from "next/link";
 import { site, partCategories } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import Icon from "@/components/Icons";
+import Figure from "@/components/Figure";
 import PageHeader from "@/components/PageHeader";
 import { JsonLd, itemListJsonLd, serviceJsonLd } from "@/components/Seo";
 
@@ -60,6 +61,15 @@ export default function YedekParca() {
             </p>
           </div>
 
+          <div>
+            <Figure
+              src="/gorseller/forklift-yedek-parca.webp"
+              alt="Forklift yedek parça ve mast grubu"
+              width={1200}
+              height={1200}
+              caption="Parça talebinde marka, model ve seri numarası belirleyicidir"
+              className="mb-24"
+            />
           <div className="plate">
             <div className="plate-head">
               <span>Talep formu bilgileri</span>
@@ -91,6 +101,7 @@ export default function YedekParca() {
               <span className="plate-key">Adet</span>
               <span className="plate-val">İhtiyaç duyulan miktar</span>
             </div>
+          </div>
           </div>
         </div>
       </section>

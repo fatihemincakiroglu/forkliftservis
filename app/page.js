@@ -5,7 +5,8 @@ import { faqs } from "@/lib/faqs";
 import ServiceNetwork from "@/components/ServiceNetwork";
 import { CtaBand } from "@/components/CtaBand";
 import { FaqList, LinkChips } from "@/components/Seo";
-import Icon, { ForkliftIllustration } from "@/components/Icons";
+import Icon from "@/components/Icons";
+import HeroSlider from "@/components/HeroSlider";
 import Figure, { FigureStrip } from "@/components/Figure";
 
 export const metadata = {
@@ -26,107 +27,8 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      {/* ---------- HERO ---------- */}
-      <section className="hero">
-        <ForkliftIllustration className="hero-art" />
-        <div className="shell hero-grid">
-          <div>
-            <p className="eyebrow">{site.coverage}, yerinde mobil servis</p>
-            <h1 className="h1">
-              Türkiye geneli <em>forklift servisi</em>
-            </h1>
-            <p className="hero-lede">
-              Duran forklift, duran depo demektir. {site.foundedYear} yılından bu
-              yana dizel, LPG ve akülü forkliftlerde tamir, periyodik bakım ve
-              yedek parça tedariki yapıyoruz. Servis aracımız parçayla birlikte
-              gelir; işlerin büyük bölümü makine tesisinizden çıkmadan çözülür.
-            </p>
-            <div className="btn-row">
-              <a className="btn btn--signal" href={`tel:${site.phoneHref}`}>
-                {site.phoneDisplay}
-              </a>
-              <Link className="btn btn--outline" href="/iletisim">
-                Arıza bildir
-              </Link>
-            </div>
+      <HeroSlider />
 
-            <div className="hero-badges">
-              <span className="hero-badge">
-                <Icon name="arac" size={20} />
-                Yerinde mobil servis
-              </span>
-              <span className="hero-badge">
-                <Icon name="saat" size={20} />
-                Aynı gün planlama
-              </span>
-              <span className="hero-badge">
-                <Icon name="garanti" size={20} />
-                Yazılı garanti
-              </span>
-              <span className="hero-badge">
-                <Icon name="konum" size={20} />
-                81 ilde hizmet
-              </span>
-            </div>
-          </div>
-
-          {/* İmza bileşen: forkliftin künye tablası */}
-          <div className="plate">
-            <div className="plate-head">
-              <span>Servis Künyesi</span>
-              <span className="plate-rivets" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </span>
-            </div>
-            <div className="plate-row">
-              <span className="plate-key">Kapsam</span>
-              <span className="plate-val">Tamir, periyodik bakım ve yedek parça</span>
-            </div>
-            <div className="plate-row">
-              <span className="plate-key">Saha</span>
-              <span className="plate-val">{site.coverage}</span>
-            </div>
-            <div className="plate-row">
-              <span className="plate-key">Makine tipi</span>
-              <span className="plate-val">
-                Dizel, LPG, akülü forklift, transpalet ve istif makinesi
-              </span>
-            </div>
-            <div className="plate-row">
-              <span className="plate-key">Müdahale</span>
-              <span className="plate-val">
-                Arıza bildiriminden sonra aynı gün planlama
-              </span>
-            </div>
-            <div className="plate-row">
-              <span className="plate-key">Garanti</span>
-              <span className="plate-val">
-                İşçilik ve değişen parçada yazılı garanti
-              </span>
-            </div>
-            <div className="plate-row">
-              <span className="plate-key">Acil hat</span>
-              <span className="plate-val">
-                <a
-                  href={`tel:${site.phoneHref}`}
-                  style={{
-                    color: "#FFC61E",
-                    textDecoration: "none",
-                    fontFamily: "var(--mono)",
-                    letterSpacing: "0.04em",
-                  }}
-                >
-                  {site.phoneDisplay}
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="hazard" aria-hidden="true" />
 
       {/* ---------- GÜVEN ŞERİDİ ---------- */}
       <section className="section" style={{ paddingBlock: "clamp(40px,5vw,60px)" }}>

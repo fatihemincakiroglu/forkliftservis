@@ -1802,3 +1802,41 @@ a {
     gap: 0 16px;
   }
 }
+
+/* ============================================================
+   SAYFA ÜST ŞERİDİ (anasayfa dışındaki tüm sayfalar)
+   ============================================================ */
+
+.page-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding-block: clamp(26px, 3.5vw, 40px) clamp(24px, 3vw, 34px);
+}
+
+.page-header .crumbs {
+  color: var(--text-mute);
+  margin-bottom: 14px;
+}
+
+.page-header .crumbs a {
+  color: var(--text-mute);
+}
+
+.page-header .crumbs a:hover {
+  color: var(--yellow-dark);
+}
+
+.page-header .crumbs [aria-current="page"] {
+  color: var(--yellow-dark);
+  font-weight: 500;
+}
+
+.page-header .h1 {
+  font-size: clamp(1.75rem, 3.6vw, 2.6rem);
+  max-width: 22ch;
+}
+
+.page-header .h1 em {
+  font-style: normal;
+  color: var(--yellow-dark);
+}

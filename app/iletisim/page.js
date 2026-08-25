@@ -1,7 +1,8 @@
 import { site } from "@/lib/site";
 import ServiceForm from "@/components/ServiceForm";
-import Icon, { ForkliftIllustration } from "@/components/Icons";
-import { Breadcrumbs, JsonLd, webPageJsonLd } from "@/components/Seo";
+import Icon from "@/components/Icons";
+import PageHeader from "@/components/PageHeader";
+import { JsonLd, webPageJsonLd } from "@/components/Seo";
 
 export const metadata = {
   title: "İletişim ve Servis Talebi",
@@ -13,41 +14,14 @@ export const metadata = {
 export default function Iletisim() {
   return (
     <>
-      <section className="hero">
-        <ForkliftIllustration className="hero-art" />
-        <div className="shell">
-          <Breadcrumbs
-            trail={[
-              { href: "/", label: "Anasayfa" },
-              { href: "/iletisim", label: "İletişim" },
-            ]}
-          />
-          <p className="eyebrow">İletişim</p>
-          <h1 className="h1">
-            Arızayı anlatın, <em>gerisini biz yazalım</em>
-          </h1>
-          <p className="hero-lede">
-            En hızlı yol telefon. Yazmayı tercih ederseniz aşağıdaki formu
-            doldurun; bilgiler doğrudan e-posta veya WhatsApp uygulamanıza
-            aktarılır.
-          </p>
-          <div className="btn-row">
-            <a className="btn btn--signal" href={`tel:${site.phoneHref}`}>
-              {site.phoneDisplay}
-            </a>
-            {site.phone2Display && (
-              <a className="btn btn--outline" href={`tel:${site.phone2Href}`}>
-                {site.phone2Display}
-              </a>
-            )}
-            <a className="btn btn--outline" href={`mailto:${site.email}`}>
-              E-posta gönder
-            </a>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        trail={[
+          { href: "/", label: "Anasayfa" },
+          { href: "/iletisim", label: "İletişim" },
+        ]}
+        title="İletişim ve servis talebi"
+      />
 
-      <div className="hazard" aria-hidden="true" />
 
       <section className="section">
         <div className="shell split">

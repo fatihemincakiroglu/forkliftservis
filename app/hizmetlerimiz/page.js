@@ -4,12 +4,12 @@ import { site, process } from "@/lib/site";
 import ServiceNetwork from "@/components/ServiceNetwork";
 import { CtaBand } from "@/components/CtaBand";
 import {
-  Breadcrumbs,
   JsonLd,
   itemListJsonLd,
   offerCatalogJsonLd,
 } from "@/components/Seo";
-import Icon, { ForkliftIllustration } from "@/components/Icons";
+import Icon from "@/components/Icons";
+import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
   title: "Forklift Tamiri ve Periyodik Bakım | Hizmetlerimiz",
@@ -21,35 +21,14 @@ export const metadata = {
 export default function HizmetlerPage() {
   return (
     <>
-      <section className="hero">
-        <ForkliftIllustration className="hero-art" />
-        <div className="shell">
-          <Breadcrumbs
-            trail={[
-              { href: "/", label: "Anasayfa" },
-              { href: "/hizmetlerimiz", label: "Hizmetlerimiz" },
-            ]}
-          />
-          <p className="eyebrow">Hizmetlerimiz</p>
-          <h1 className="h1">
-            Forklift tamiri ve <em>periyodik bakım</em>
-          </h1>
-          <p className="hero-lede">
-            Arıza çıktığında onarım, arıza çıkmadan önce bakım. Dizel, LPG ve
-            akülü forkliftlerin tamamında; transpalet ve istif makineleri dahil.
-          </p>
-          <div className="btn-row">
-            <a className="btn btn--signal" href={`tel:${site.phoneHref}`}>
-              {site.phoneDisplay}
-            </a>
-            <Link className="btn btn--outline" href="/iletisim">
-              Servis talebi
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        trail={[
+          { href: "/", label: "Anasayfa" },
+          { href: "/hizmetlerimiz", label: "Hizmetlerimiz" },
+        ]}
+        title="Forklift tamiri ve periyodik bakım"
+      />
 
-      <div className="hazard" aria-hidden="true" />
 
       {serviceGroups.map((group, i) => {
         const list = services.filter((s) => s.group === group);

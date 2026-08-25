@@ -1,7 +1,8 @@
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
-import Icon, { ForkliftIllustration } from "@/components/Icons";
-import { Breadcrumbs, JsonLd, webPageJsonLd } from "@/components/Seo";
+import Icon from "@/components/Icons";
+import PageHeader from "@/components/PageHeader";
+import { JsonLd, webPageJsonLd } from "@/components/Seo";
 
 export const metadata = {
   title: "Hakkımızda",
@@ -13,28 +14,14 @@ export const metadata = {
 export default function Hakkimizda() {
   return (
     <>
-      <section className="hero">
-        <ForkliftIllustration className="hero-art" />
-        <div className="shell">
-          <Breadcrumbs
-            trail={[
-              { href: "/", label: "Anasayfa" },
-              { href: "/hakkimizda", label: "Hakkımızda" },
-            ]}
-          />
-          <p className="eyebrow">Hakkımızda</p>
-          <h1 className="h1">
-            Sahada <em>{new Date().getFullYear() - site.foundedYear} yıl</em>
-          </h1>
-          <p className="hero-lede">
-            {site.foundedYear} yılında bir servis aracıyla başladık. Bugün
-            Türkiye genelinde depo, fabrika, liman ve lojistik merkezlerinde
-            forklift bakımı ve onarımı yapıyoruz.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        trail={[
+          { href: "/", label: "Anasayfa" },
+          { href: "/hakkimizda", label: "Hakkımızda" },
+        ]}
+        title="Hakkımızda"
+      />
 
-      <div className="hazard" aria-hidden="true" />
 
       <section className="section">
         <div className="shell split">

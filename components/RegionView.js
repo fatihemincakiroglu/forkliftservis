@@ -10,13 +10,12 @@ import { services, serviceHref } from "@/lib/services";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import {
-  Breadcrumbs,
   JsonLd,
   LinkChips,
   itemListJsonLd,
   serviceJsonLd,
 } from "@/components/Seo";
-import { ForkliftIllustration } from "@/components/Icons";
+import PageHeader from "@/components/PageHeader";
 
 export default function RegionView({ region: r }) {
   const city = getCity(r.citySlug);
@@ -39,112 +38,8 @@ export default function RegionView({ region: r }) {
 
   return (
     <>
-      <section className="hero">
-        <ForkliftIllustration className="hero-art" />
-        <div className="shell hero-grid">
-          <div>
-            <Breadcrumbs trail={trail} />
-            <p className="eyebrow">
-              {isCity
-                ? `${city.region} Bölgesi`
-                : `${city.name}${district?.side ? ` · ${district.side} Yakası` : ""}`}
-            </p>
-            <h1 className="h1">
-              {r.name} <em>Forklift Servisi</em>
-            </h1>
-            <p className="hero-lede">
-              {r.name} {isCity ? "genelinde" : "ve çevresinde"} yerinde forklift
-              tamiri, periyodik bakım ve yedek parça. Servis aracımız gerekli
-              takım ve parçayla tesisinize gelir; işlerin büyük bölümü makine
-              yerinden kaldırılmadan çözülür.
-            </p>
-            <div className="btn-row">
-              <a className="btn btn--signal" href={`tel:${site.phoneHref}`}>
-                {site.phoneDisplay}
-              </a>
-              <Link className="btn btn--outline" href="/iletisim">
-                Arıza bildir
-              </Link>
-            </div>
-          </div>
+      <PageHeader trail={trail} title={`${r.name} Forklift Servisi`} />
 
-          <div className="plate">
-            <div className="plate-head">
-              <span>{r.name} servis künyesi</span>
-              <span className="plate-rivets" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </span>
-            </div>
-
-            {isCity ? (
-              <>
-                <div className="plate-row">
-                  <span className="plate-key">Bölge</span>
-                  <span className="plate-val">{city.region}</span>
-                </div>
-                <div className="plate-row">
-                  <span className="plate-key">Sektörler</span>
-                  <span className="plate-val">{city.sectors}</span>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="plate-row">
-                  <span className="plate-key">İl</span>
-                  <span className="plate-val">
-                    <Link
-                      href={regionHref(city.slug)}
-                      style={{ color: "#dde6ef" }}
-                    >
-                      {city.name}
-                    </Link>
-                  </span>
-                </div>
-                {district?.side && (
-                  <div className="plate-row">
-                    <span className="plate-key">Yaka</span>
-                    <span className="plate-val">{district.side} Yakası</span>
-                  </div>
-                )}
-                {district?.zone && (
-                  <div className="plate-row">
-                    <span className="plate-key">Sanayi</span>
-                    <span className="plate-val">{district.zone}</span>
-                  </div>
-                )}
-              </>
-            )}
-
-            <div className="plate-row">
-              <span className="plate-key">Kapsam</span>
-              <span className="plate-val">
-                Tamir · Periyodik bakım · Yedek parça
-              </span>
-            </div>
-            <div className="plate-row">
-              <span className="plate-key">Makine</span>
-              <span className="plate-val">
-                Dizel, LPG, akülü forklift · transpalet · istif makinesi
-              </span>
-            </div>
-            <div className="plate-row">
-              <span className="plate-key">Acil hat</span>
-              <span className="plate-val">
-                <a
-                  href={`tel:${site.phoneHref}`}
-                  style={{ color: "#f5b301", textDecoration: "none", fontWeight: 600 }}
-                >
-                  {site.phoneDisplay}
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="hazard" aria-hidden="true" />
 
       {/* Bölgeye özgü içerik */}
       <section className="section">
@@ -184,16 +79,103 @@ export default function RegionView({ region: r }) {
           </div>
 
           <div>
-            <p className="eyebrow">{r.name} için servis kalemleri</p>
-            <ul className="checklist" style={{ gridTemplateColumns: "1fr" }}>
-              {services.map((s) => (
-                <li key={s.slug}>
-                  <span>
-                    <Link href={serviceHref(s.slug)}>{s.name}</Link>
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <div className="plate">
+              <div className="plate-head">
+                <span>{r.name} servis künyesi</span>
+                <span className="plate-rivets" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+              </div>
+
+              {isCity ? (
+                <>
+                  <div className="plate-row">
+                    <span className="plate-key">Bölge</span>
+                    <span className="plate-val">{city.region}</span>
+                  </div>
+                  <div className="plate-row">
+                    <span className="plate-key">Sektörler</span>
+                    <span className="plate-val">{city.sectors}</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="plate-row">
+                    <span className="plate-key">İl</span>
+                    <span className="plate-val">
+                      <Link href={regionHref(city.slug)} style={{ color: "#dde6ef" }}>
+                        {city.name}
+                      </Link>
+                    </span>
+                  </div>
+                  {district?.side && (
+                    <div className="plate-row">
+                      <span className="plate-key">Yaka</span>
+                      <span className="plate-val">{district.side} Yakası</span>
+                    </div>
+                  )}
+                  {district?.zone && (
+                    <div className="plate-row">
+                      <span className="plate-key">Sanayi</span>
+                      <span className="plate-val">{district.zone}</span>
+                    </div>
+                  )}
+                </>
+              )}
+
+              <div className="plate-row">
+                <span className="plate-key">Kapsam</span>
+                <span className="plate-val">
+                  Tamir · Periyodik bakım · Yedek parça
+                </span>
+              </div>
+              <div className="plate-row">
+                <span className="plate-key">Makine</span>
+                <span className="plate-val">
+                  Dizel, LPG, akülü forklift · transpalet · istif makinesi
+                </span>
+              </div>
+              <div className="plate-row">
+                <span className="plate-key">Acil hat</span>
+                <span className="plate-val">
+                  <a
+                    href={`tel:${site.phoneHref}`}
+                    style={{ color: "#f5b301", textDecoration: "none", fontWeight: 600 }}
+                  >
+                    {site.phoneDisplay}
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Servis kalemleri */}
+      <section className="section section--concrete">
+        <div className="shell">
+          <div className="section-head">
+            <p className="eyebrow">Kapsam</p>
+            <h2 className="h2">{r.name} için servis kalemleri</h2>
+          </div>
+          <ul className="checklist">
+            {services.map((s) => (
+              <li key={s.slug}>
+                <span>
+                  <Link href={serviceHref(s.slug)}>{s.name}</Link>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <div className="btn-row">
+            <a className="btn btn--signal" href={`tel:${site.phoneHref}`}>
+              {site.phoneDisplay}
+            </a>
+            <Link className="btn btn--outline" href="/iletisim">
+              Arıza bildir
+            </Link>
           </div>
         </div>
       </section>

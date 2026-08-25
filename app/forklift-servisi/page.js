@@ -4,13 +4,12 @@ import ServiceNetwork from "@/components/ServiceNetwork";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import {
-  Breadcrumbs,
   JsonLd,
   LinkChips,
   itemListJsonLd,
   webPageJsonLd,
 } from "@/components/Seo";
-import Icon, { ForkliftIllustration } from "@/components/Icons";
+import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
   title: "Forklift Servisi | Türkiye Geneli Yerinde Tamir ve Bakım",
@@ -22,33 +21,14 @@ export const metadata = {
 export default function BolgelerPage() {
   return (
     <>
-      <section className="hero">
-        <ForkliftIllustration className="hero-art" />
-        <div className="shell">
-          <Breadcrumbs
-            trail={[
-              { href: "/", label: "Anasayfa" },
-              { href: "/forklift-servisi", label: "Bölgeler" },
-            ]}
-          />
-          <p className="eyebrow">Servis ağı</p>
-          <h1 className="h1">
-            Türkiye geneli <em>forklift servisi</em>
-          </h1>
-          <p className="hero-lede">
-            81 ilde hizmet veriyoruz. Aşağıdaki illerde düzenli servis rotamız
-            bulunuyor; bölge sayfasında o ile özgü sanayi yoğunluğu, öne çıkan
-            bakım kalemleri ve ilçe listesi yer alıyor.
-          </p>
-          <div className="btn-row">
-            <a className="btn btn--signal" href={`tel:${site.phoneHref}`}>
-              {site.phoneDisplay}
-            </a>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        trail={[
+          { href: "/", label: "Anasayfa" },
+          { href: "/forklift-servisi", label: "Bölgeler" },
+        ]}
+        title="Türkiye geneli forklift servisi"
+      />
 
-      <div className="hazard" aria-hidden="true" />
 
       <section className="section">
         <div className="shell">

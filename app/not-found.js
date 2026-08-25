@@ -4,13 +4,13 @@ export const metadata = { title: "Sayfa bulunamadı" };
 
 export default function NotFound() {
   return (
-    <section className="hero" style={{ minHeight: "58vh", display: "grid", alignItems: "center" }}>
+    <section className="section" style={{ minHeight: "52vh", display: "grid", alignItems: "center" }}>
       <div className="shell">
         <p className="eyebrow">Hata 404</p>
         <h1 className="h1">
           Bu sayfa <em>yerinde değil</em>
         </h1>
-        <p className="hero-lede">
+        <p className="lede">
           Aradığınız adres taşınmış veya hiç var olmamış olabilir. Anasayfadan
           devam edin ya da doğrudan servis talebi oluşturun.
         </p>

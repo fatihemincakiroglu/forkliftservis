@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { site, partCategories } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
-import Icon, { ForkliftIllustration } from "@/components/Icons";
-import { Breadcrumbs, JsonLd, itemListJsonLd, serviceJsonLd } from "@/components/Seo";
+import Icon from "@/components/Icons";
+import PageHeader from "@/components/PageHeader";
+import { JsonLd, itemListJsonLd, serviceJsonLd } from "@/components/Seo";
 
 export const metadata = {
   title: "Forklift Yedek Parça",
@@ -14,36 +15,14 @@ export const metadata = {
 export default function YedekParca() {
   return (
     <>
-      <section className="hero">
-        <ForkliftIllustration className="hero-art" />
-        <div className="shell">
-          <Breadcrumbs
-            trail={[
-              { href: "/", label: "Anasayfa" },
-              { href: "/yedek-parca", label: "Yedek Parça" },
-            ]}
-          />
-          <p className="eyebrow">Yedek parça</p>
-          <h1 className="h1">
-            Doğru parça, <em>doğru künye</em> ile bulunur
-          </h1>
-          <p className="hero-lede">
-            Parça talebinde bize makinenin markası, modeli ve seri numarasını
-            iletin. Aynı model içinde bile üretim yılına göre parça değişir;
-            künye numarası bu karışıklığı ortadan kaldırır.
-          </p>
-          <div className="btn-row">
-            <Link className="btn btn--signal" href="/iletisim">
-              Parça fiyatı sor
-            </Link>
-            <a className="btn btn--outline" href={`tel:${site.phoneHref}`}>
-              {site.phoneDisplay}
-            </a>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        trail={[
+          { href: "/", label: "Anasayfa" },
+          { href: "/yedek-parca", label: "Yedek Parça" },
+        ]}
+        title="Forklift yedek parça"
+      />
 
-      <div className="hazard" aria-hidden="true" />
 
       {/* Kategoriler */}
       <section className="section">

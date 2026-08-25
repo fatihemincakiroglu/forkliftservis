@@ -2065,70 +2065,6 @@ a {
 }
 
 /* ============================================================
-   MOBİL ALT ÇUBUK
-   ============================================================ */
-
-.mobile-bar {
-  display: none;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 70;
-  gap: 1px;
-  background: var(--border);
-  border-top: 1px solid var(--border);
-  padding-bottom: env(safe-area-inset-bottom);
-  box-shadow: 0 -4px 18px rgba(21, 38, 60, 0.12);
-}
-
-.mobile-bar-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  min-height: 56px;
-  font-size: 0.97rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-}
-
-.mobile-bar-btn--tel {
-  background: var(--yellow);
-  color: var(--navy);
-}
-
-.mobile-bar-btn--tel:active {
-  background: var(--yellow-dark);
-}
-
-.mobile-bar-btn--wa {
-  background: #1eb154;
-  color: #fff;
-}
-
-.mobile-bar-btn--wa:active {
-  background: #189246;
-}
-
-@media (max-width: 980px) {
-  .float-contact {
-    display: none;
-  }
-
-  .mobile-bar {
-    display: flex;
-  }
-
-  /* Alt çubuğun içeriği örtmemesi için */
-  body {
-    padding-bottom: 58px;
-  }
-}
-
-/* ============================================================
    MOBİL İNCE AYAR
    Küçük ekranlarda taşmayı ve sıkışmayı önleyen düzeltmeler.
    ============================================================ */
@@ -2367,4 +2303,484 @@ html,
 body {
   overflow-x: clip;
   max-width: 100%;
+}
+
+/* ============================================================
+   MOBİL YÜZEN İLETİŞİM ÇUBUĞU
+   Ekranın altına yapışık değil; kenarlardan boşluklu,
+   yuvarlatılmış ve gölgeli bir panel olarak durur.
+   ============================================================ */
+
+.mobile-bar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  padding: 0 12px calc(12px + env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+
+.mobile-bar-inner {
+  display: flex;
+  gap: 8px;
+  padding: 7px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(21, 38, 60, 0.18),
+    0 2px 8px rgba(21, 38, 60, 0.08);
+  pointer-events: auto;
+}
+
+.mobile-bar-btn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: transform 0.16s ease, filter 0.16s ease, box-shadow 0.16s ease;
+}
+
+.mobile-bar-btn:active {
+  transform: scale(0.965);
+  filter: brightness(0.94);
+}
+
+.mobile-bar-icon {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.mobile-bar-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.mobile-bar-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-bar-sub {
+  font-size: 0.72rem;
+  font-weight: 500;
+  opacity: 0.78;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.mobile-bar-btn--tel {
+  background: linear-gradient(135deg, #ffc933 0%, #f5b301 55%, #e0a300 100%);
+  color: var(--navy);
+  box-shadow: 0 4px 14px rgba(245, 179, 1, 0.38);
+}
+
+.mobile-bar-btn--tel .mobile-bar-icon {
+  background: rgba(21, 38, 60, 0.14);
+}
+
+.mobile-bar-btn--wa {
+  background: linear-gradient(135deg, #2ad368 0%, #1eb154 55%, #17994a 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(30, 177, 84, 0.38);
+}
+
+@media (max-width: 980px) {
+  /* Masaüstü yüzen butonları gizle, mobil çubuğu göster */
+  .float-contact {
+    display: none;
+  }
+
+  .mobile-bar {
+    display: block;
+  }
+
+  /* Yüzen çubuğun içeriği örtmemesi için */
+  body {
+    padding-bottom: 88px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mobile-bar-sub {
+    display: none;
+  }
+
+  .mobile-bar-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+  }
+
+  .mobile-bar-btn {
+    padding: 12px 10px;
+    gap: 8px;
+  }
+}
+
+/* ============================================================
+   HOVER DAVRANIŞLARI
+   Yalnızca gerçek fare girişi olan cihazlarda uygulanır.
+   Dokunmatik ekranlarda hover "takılı kalma" sorunu yaratır;
+   any-hover sorgusu bunu engeller.
+   ============================================================ */
+
+@media (hover: hover) and (pointer: fine) {
+  /* --- Logo --- */
+  .brand:hover .brand-mark {
+    background: var(--yellow);
+    color: var(--navy);
+    transform: rotate(-4deg) scale(1.06);
+  }
+
+  .brand-mark {
+    transition: background-color 0.2s ease, color 0.2s ease,
+      transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+  }
+
+  .brand:hover .brand-name {
+    color: var(--yellow-dark);
+  }
+
+  .brand-name {
+    transition: color 0.18s ease;
+  }
+
+  /* --- Görseller: hafif yakınlaşma --- */
+  .figure img {
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  .figure {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .figure:hover {
+    border-color: var(--yellow);
+    box-shadow: var(--shadow-md);
+  }
+
+  .figure:hover img {
+    transform: scale(1.045);
+  }
+
+  /* --- Kart içindeki ikon canlansın --- */
+  .card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  .card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .card-icon {
+    transition: background-color 0.2s ease, color 0.2s ease,
+      transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+  }
+
+  .card:hover .card-icon {
+    background: var(--yellow);
+    color: var(--navy);
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  .section--dark .card:hover .card-icon {
+    background: var(--yellow);
+    color: var(--navy);
+  }
+
+  /* --- Arıza satırları --- */
+  .row-icon {
+    transition: background-color 0.18s ease, color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .row:hover .row-icon {
+    background: var(--yellow);
+    color: var(--navy);
+    transform: scale(1.06);
+  }
+
+  .row:hover .row-title {
+    color: var(--yellow-dark);
+  }
+
+  .section--dark .row:hover .row-title {
+    color: var(--yellow);
+  }
+
+  .row-title {
+    transition: color 0.16s ease;
+  }
+
+  /* --- Süreç adımları --- */
+  .step {
+    transition: border-color 0.2s ease, transform 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .step:hover {
+    border-color: var(--yellow);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-4px);
+  }
+
+  .step-icon {
+    transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+  }
+
+  .step:hover .step-icon {
+    transform: scale(1.1) rotate(-6deg);
+  }
+
+  .step-num {
+    transition: color 0.22s ease;
+  }
+
+  .step:hover .step-num {
+    color: rgba(245, 179, 1, 0.28);
+  }
+
+  /* --- İstatistik kartları --- */
+  .stat {
+    transition: border-color 0.2s ease, transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .stat:hover {
+    border-color: var(--yellow);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .stat-icon {
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .stat:hover .stat-icon {
+    background: var(--yellow);
+    color: var(--navy);
+    transform: scale(1.06);
+  }
+
+  /* --- İletişim kalemleri --- */
+  .contact-item {
+    transition: border-color 0.18s ease, background-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .contact-item:hover {
+    border-color: var(--yellow);
+    background: #fff;
+    transform: translateX(3px);
+  }
+
+  .contact-icon {
+    transition: background-color 0.18s ease, color 0.18s ease,
+      border-color 0.18s ease;
+  }
+
+  .contact-item:hover .contact-icon {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--navy);
+  }
+
+  /* --- Kontrol listesi --- */
+  .checklist li {
+    transition: padding-left 0.16s ease;
+  }
+
+  .checklist li:hover {
+    padding-left: 5px;
+  }
+
+  .checklist li:hover::before {
+    background-color: var(--yellow);
+  }
+
+  .checklist li::before {
+    transition: background-color 0.16s ease;
+  }
+
+  /* --- Belirti listesi --- */
+  .signs li {
+    transition: border-left-width 0.16s ease, background-color 0.16s ease,
+      transform 0.16s ease;
+  }
+
+  .signs li:hover {
+    background: rgba(245, 179, 1, 0.09);
+    transform: translateX(3px);
+  }
+
+  /* --- Marka rozetleri --- */
+  .brands span {
+    transition: border-color 0.16s ease, background-color 0.16s ease,
+      color 0.16s ease, transform 0.16s ease;
+  }
+
+  .brands span:hover {
+    border-color: var(--yellow);
+    background: rgba(245, 179, 1, 0.1);
+    color: var(--yellow);
+    transform: translateY(-2px);
+  }
+
+  /* --- Künye tablası satırları --- */
+  .plate-row {
+    transition: background-color 0.16s ease;
+  }
+
+  .plate-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* --- Bölge kartı başlığı --- */
+  .region-group-icon {
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .region-group:hover .region-group-icon {
+    background: var(--yellow);
+    color: var(--navy);
+    transform: scale(1.05);
+  }
+
+  /* --- Hero rozetleri --- */
+  .hero-badge {
+    transition: color 0.16s ease;
+  }
+
+  .hero-badge:hover {
+    color: #fff;
+  }
+
+  .hero-badge svg {
+    transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+  }
+
+  .hero-badge:hover svg {
+    transform: scale(1.15);
+  }
+
+  /* --- Alt bilgi bağlantıları --- */
+  .footer-list a {
+    display: inline-block;
+    transition: color 0.16s ease, transform 0.16s ease;
+  }
+
+  .footer-list a:hover {
+    transform: translateX(4px);
+  }
+
+  /* --- SSS --- */
+  .faq-item > summary {
+    transition: color 0.16s ease, background-color 0.16s ease;
+  }
+
+  .faq-item:hover {
+    border-color: var(--border-strong);
+  }
+
+  .faq-item[open]:hover {
+    border-color: var(--yellow);
+  }
+
+  /* --- Butonlar: ışık parlaması --- */
+  .btn--signal {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn--signal::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(
+      100deg,
+      transparent,
+      rgba(255, 255, 255, 0.55),
+      transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  .btn--signal:hover::after {
+    left: 130%;
+  }
+
+  /* --- Çağrı bandı telefon numarası --- */
+  .cta-phone svg {
+    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+  }
+
+  .cta-phone:hover svg {
+    transform: rotate(-12deg) scale(1.1);
+  }
+
+  /* --- Başlık telefon butonu --- */
+  .nav-cta svg {
+    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+  }
+
+  .nav-cta:hover svg {
+    transform: rotate(-12deg) scale(1.1);
+  }
+
+  /* --- Sayfa yolu --- */
+  .crumbs a {
+    transition: color 0.15s ease;
+  }
+}
+
+/* Dokunmatik cihazlarda basma geri bildirimi */
+@media (hover: none) {
+  .card:active,
+  .stat:active,
+  .region-group:active {
+    transform: scale(0.99);
+  }
+
+  .btn:active,
+  .chips a:active,
+  .nav-cta:active {
+    transform: scale(0.97);
+  }
 }

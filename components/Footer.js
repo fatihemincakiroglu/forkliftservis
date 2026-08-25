@@ -1,0 +1,98 @@
+import Link from "next/link";
+import { site } from "@/lib/site";
+import { services } from "@/lib/services";
+import { cities } from "@/lib/locations";
+
+export default function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="shell">
+        <div className="footer-grid footer-grid--wide">
+          <div>
+            <p className="footer-title">{site.domain}</p>
+            <p style={{ margin: "0 0 16px", maxWidth: "34ch" }}>
+              {site.tagline}. Dizel, LPG ve akülü tüm forklift tiplerinde
+              yerinde servis.
+            </p>
+            <p style={{ margin: "0 0 14px" }}>
+              {site.address.street}
+              <br />
+              {site.address.postalCode} {site.address.district} /{" "}
+              {site.address.city}
+            </p>
+            <p style={{ margin: 0 }}>
+              <a href={`tel:${site.phoneHref}`} style={{ color: "#FFC61E" }}>
+                {site.phoneDisplay}
+              </a>
+              <br />
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </p>
+          </div>
+
+          <div>
+            <p className="footer-title">Hizmetler</p>
+            <ul className="footer-list">
+              {services.slice(0, 8).map((s) => (
+                <li key={s.slug}>
+                  <Link href={`/hizmetlerimiz/${s.slug}`}>{s.name}</Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/yedek-parca">Forklift Yedek Parça</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="footer-title">Bölgeler</p>
+            <ul className="footer-list">
+              {cities.slice(0, 9).map((c) => (
+                <li key={c.slug}>
+                  <Link href={`/forklift-servisi/${c.slug}`}>
+                    {c.name} Forklift Servisi
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/forklift-servisi">Tüm bölgeler →</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="footer-title">Kurumsal</p>
+            <ul className="footer-list">
+              <li>
+                <Link href="/">Anasayfa</Link>
+              </li>
+              <li>
+                <Link href="/hizmetlerimiz">Hizmetlerimiz</Link>
+              </li>
+              <li>
+                <Link href="/markalar">Markalar</Link>
+              </li>
+              <li>
+                <Link href="/sss">Sıkça Sorulan Sorular</Link>
+              </li>
+              <li>
+                <Link href="/hakkimizda">Hakkımızda</Link>
+              </li>
+              <li>
+                <Link href="/iletisim">İletişim</Link>
+              </li>
+              <li style={{ marginTop: 10 }}>{site.hours.weekday}</li>
+              <li style={{ color: "#FFC61E" }}>{site.hours.emergency}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <span>
+            © {new Date().getFullYear()} {site.legalName}
+          </span>
+          <span>Tüm hakları saklıdır.</span>
+        </div>
+      </div>
+    </footer>
+  );
+}

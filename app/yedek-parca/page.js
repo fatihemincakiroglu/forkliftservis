@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, partCategories } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
+import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
   title: "Forklift Yedek Parça",
@@ -13,6 +14,7 @@ export default function YedekParca() {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell">
           <p className="eyebrow">Yedek parça</p>
           <h1 className="h1">
@@ -47,7 +49,9 @@ export default function YedekParca() {
           <div className="rows">
             {partCategories.map((c) => (
               <div className="row" key={c.code}>
-                <span className="row-code">{c.code}</span>
+                <span className="row-icon">
+                  <Icon name={c.icon} size={24} />
+                </span>
                 <span className="row-title">{c.title}</span>
                 <span className="row-detail">{c.items}</span>
               </div>
@@ -114,6 +118,9 @@ export default function YedekParca() {
           </div>
           <div className="grid grid--3">
             <article className="card">
+              <span className="card-icon">
+                <Icon name="parca" size={26} />
+              </span>
               <span className="card-code">Stok</span>
               <h3 className="h3">Hızlı hareket eden parçalar</h3>
               <p>
@@ -122,6 +129,9 @@ export default function YedekParca() {
               </p>
             </article>
             <article className="card">
+              <span className="card-icon">
+                <Icon name="saat" size={26} />
+              </span>
               <span className="card-code">Tedarik</span>
               <h3 className="h3">Özel sipariş parçalar</h3>
               <p>
@@ -130,6 +140,9 @@ export default function YedekParca() {
               </p>
             </article>
             <article className="card">
+              <span className="card-icon">
+                <Icon name="arac" size={26} />
+              </span>
               <span className="card-code">Kargo</span>
               <h3 className="h3">Aynı gün çıkış</h3>
               <p>

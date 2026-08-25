@@ -3,6 +3,7 @@ import { brands } from "@/lib/brands";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs } from "@/components/Seo";
+import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
   title: "Forklift Markaları | Servis Verdiğimiz Markalar",
@@ -15,6 +16,7 @@ export default function MarkalarPage() {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell">
           <Breadcrumbs
             trail={[
@@ -46,11 +48,14 @@ export default function MarkalarPage() {
           <div className="grid grid--3">
             {brands.map((b) => (
               <article className="card" key={b.slug}>
+                <span className="card-icon">
+                  <Icon name="forklift" size={26} />
+                </span>
                 <span className="card-code">{b.name}</span>
                 <h2 className="h3">{b.name} Forklift Servisi</h2>
                 <p>{b.note}</p>
                 <Link className="card-link" href={`/markalar/${b.slug}`}>
-                  Ayrıntılara bak →
+                  Ayrıntılara bak <Icon name="ok" size={16} />
                 </Link>
               </article>
             ))}

@@ -6,6 +6,7 @@ import { brands } from "@/lib/brands";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, JsonLd, LinkChips, serviceJsonLd } from "@/components/Seo";
+import { ForkliftIllustration } from "@/components/Icons";
 
 export function generateStaticParams() {
   return cities.map((c) => ({ sehir: c.slug }));
@@ -34,6 +35,7 @@ export default function CityPage({ params }) {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell hero-grid">
           <div>
             <Breadcrumbs

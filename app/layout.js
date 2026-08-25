@@ -7,11 +7,11 @@ import { site } from "@/lib/site";
 export const metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Forklift Servisi | Türkiye Geneli Forklift Tamiri ve Bakımı",
+    default: "Forklift Servis ve Forklift Tamir Hizmeti",
     template: `%s — ${site.name}`,
   },
   description:
-    "Türkiye genelinde forklift tamiri, periyodik bakım ve orijinal yedek parça. Dizel, LPG ve akülü forkliftler için yerinde mobil servis.",
+    "Uzman forklift servis ve forklift tamir hizmeti ile arızalara hızlı çözüm sunuyoruz. Periyodik bakım, acil servis ve garantili onarım desteği.",
   keywords: [
     "forklift servis",
     "forklift servisi",
@@ -30,15 +30,15 @@ export const metadata = {
     locale: "tr_TR",
     url: site.url,
     siteName: site.name,
-    title: "Forklift Servisi | Türkiye Geneli Forklift Tamiri ve Bakımı",
+    title: "Forklift Servis ve Forklift Tamir Hizmeti",
     description:
-      "Türkiye genelinde yerinde forklift tamiri, periyodik bakım ve yedek parça tedariki.",
+      "Uzman forklift servis ve forklift tamir hizmeti ile arızalara hızlı çözüm sunuyoruz. Periyodik bakım, acil servis ve garantili onarım desteği.",
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport = {
-  themeColor: "#16181C",
+  themeColor: "#15263C",
 };
 
 export default function RootLayout({ children }) {
@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>

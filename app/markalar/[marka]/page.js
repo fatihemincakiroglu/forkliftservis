@@ -6,6 +6,7 @@ import { cities } from "@/lib/locations";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, JsonLd, LinkChips, serviceJsonLd } from "@/components/Seo";
+import { ForkliftIllustration } from "@/components/Icons";
 
 export function generateStaticParams() {
   return brands.map((b) => ({ marka: b.slug }));
@@ -32,6 +33,7 @@ export default function BrandPage({ params }) {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell">
           <Breadcrumbs
             trail={[

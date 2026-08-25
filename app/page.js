@@ -5,12 +5,21 @@ import { brands, faqs } from "@/lib/brands";
 import { cities, titleize } from "@/lib/locations";
 import { CtaBand } from "@/components/CtaBand";
 import { FaqList, LinkChips } from "@/components/Seo";
+import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
-  title: `Forklift Servisi | Türkiye Geneli Forklift Tamiri ve Bakımı`,
+  // absolute: layout'taki "%s — Site Adı" şablonunu atlar,
+  // başlık tam olarak aşağıda yazdığı gibi görünür.
+  title: { absolute: "Forklift Servis ve Forklift Tamir Hizmeti" },
   description:
-    "Türkiye genelinde forklift servisi: yerinde forklift tamiri, periyodik bakım ve yedek parça. Dizel, LPG ve akülü forkliftler. Aynı gün planlama, yazılı garanti.",
+    "Uzman forklift servis ve forklift tamir hizmeti ile arızalara hızlı çözüm sunuyoruz. Periyodik bakım, acil servis ve garantili onarım desteği.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Forklift Servis ve Forklift Tamir Hizmeti",
+    description:
+      "Uzman forklift servis ve forklift tamir hizmeti ile arızalara hızlı çözüm sunuyoruz. Periyodik bakım, acil servis ve garantili onarım desteği.",
+    url: "/",
+  },
 };
 
 const istanbul = cities.find((c) => c.slug === "istanbul");
@@ -20,6 +29,7 @@ export default function Home() {
     <>
       {/* ---------- HERO ---------- */}
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell hero-grid">
           <div>
             <p className="eyebrow">{site.coverage} · yerinde mobil servis</p>
@@ -39,6 +49,25 @@ export default function Home() {
               <Link className="btn btn--outline" href="/iletisim">
                 Arıza bildir
               </Link>
+            </div>
+
+            <div className="hero-badges">
+              <span className="hero-badge">
+                <Icon name="arac" size={20} />
+                Yerinde mobil servis
+              </span>
+              <span className="hero-badge">
+                <Icon name="saat" size={20} />
+                Aynı gün planlama
+              </span>
+              <span className="hero-badge">
+                <Icon name="garanti" size={20} />
+                Yazılı garanti
+              </span>
+              <span className="hero-badge">
+                <Icon name="konum" size={20} />
+                81 ilde hizmet
+              </span>
             </div>
           </div>
 
@@ -100,6 +129,50 @@ export default function Home() {
 
       <div className="hazard" aria-hidden="true" />
 
+      {/* ---------- GÜVEN ŞERİDİ ---------- */}
+      <section className="section" style={{ paddingBlock: "clamp(40px,5vw,60px)" }}>
+        <div className="shell">
+          <div className="stats">
+            <div className="stat">
+              <span className="stat-icon">
+                <Icon name="arac" size={22} />
+              </span>
+              <span className="stat-value">Yerinde servis</span>
+              <span className="stat-label">
+                Servis aracımız parçayla birlikte tesisinize gelir
+              </span>
+            </div>
+            <div className="stat">
+              <span className="stat-icon">
+                <Icon name="forklift" size={22} />
+              </span>
+              <span className="stat-value">Tüm markalar</span>
+              <span className="stat-label">
+                Dizel, LPG ve akülü forklift · transpalet · istif makinesi
+              </span>
+            </div>
+            <div className="stat">
+              <span className="stat-icon">
+                <Icon name="rapor" size={22} />
+              </span>
+              <span className="stat-value">Yazılı rapor</span>
+              <span className="stat-label">
+                Yapılan işlem, değişen parça ve sonraki bakım tarihi
+              </span>
+            </div>
+            <div className="stat">
+              <span className="stat-icon">
+                <Icon name="garanti" size={22} />
+              </span>
+              <span className="stat-value">Onaysız işlem yok</span>
+              <span className="stat-label">
+                Fiyat ve kapsam onaylanmadan hiçbir parça değişmez
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ---------- İKİ ANA HİZMET ---------- */}
       <section className="section">
         <div className="shell">
@@ -114,6 +187,9 @@ export default function Home() {
 
           <div className="grid grid--2">
             <article className="card">
+              <span className="card-icon">
+                <Icon name="bakim" size={26} />
+              </span>
               <span className="card-code">A · Servis</span>
               <h3 className="h3">Forklift tamiri ve periyodik bakım</h3>
               <p>
@@ -122,11 +198,14 @@ export default function Home() {
                 büyük ölçüde ortadan kaldırıyoruz.
               </p>
               <Link className="card-link" href="/hizmetlerimiz">
-                Servis kapsamına bak →
+                Servis kapsamına bak <Icon name="ok" size={16} />
               </Link>
             </article>
 
             <article className="card">
+              <span className="card-icon">
+                <Icon name="parca" size={26} />
+              </span>
               <span className="card-code">B · Parça</span>
               <h3 className="h3">Forklift yedek parça</h3>
               <p>
@@ -135,7 +214,7 @@ export default function Home() {
                 süresi baştan yazılı bildirilir.
               </p>
               <Link className="card-link" href="/yedek-parca">
-                Parça kataloğuna bak →
+                Parça kataloğuna bak <Icon name="ok" size={16} />
               </Link>
             </article>
           </div>
@@ -153,7 +232,9 @@ export default function Home() {
           <div className="rows">
             {faults.map((f) => (
               <div className="row" key={f.code}>
-                <span className="row-code">{f.code}</span>
+                <span className="row-icon">
+                  <Icon name={f.icon} size={24} />
+                </span>
                 <span className="row-title">{f.title}</span>
                 <span className="row-detail">{f.detail}</span>
               </div>
@@ -183,6 +264,9 @@ export default function Home() {
             {process.map((p) => (
               <div className="step" key={p.step}>
                 <span className="step-num">{p.step}</span>
+                <span className="step-icon">
+                  <Icon name={p.icon} size={22} />
+                </span>
                 <h3>{p.title}</h3>
                 <p>{p.detail}</p>
               </div>

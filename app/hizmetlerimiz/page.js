@@ -4,6 +4,7 @@ import { site, process } from "@/lib/site";
 import { cities } from "@/lib/locations";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, LinkChips } from "@/components/Seo";
+import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
   title: "Forklift Tamiri ve Periyodik Bakım | Hizmetlerimiz",
@@ -16,6 +17,7 @@ export default function HizmetlerPage() {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell">
           <Breadcrumbs
             trail={[
@@ -65,11 +67,14 @@ export default function HizmetlerPage() {
               <div className="grid grid--3">
                 {list.map((s) => (
                   <article className="card" key={s.slug}>
+                    <span className="card-icon">
+                      <Icon name={s.icon} size={26} />
+                    </span>
                     <span className="card-code">{s.group}</span>
                     <h3 className="h3">{s.name}</h3>
                     <p>{s.lede}</p>
                     <Link className="card-link" href={`/hizmetlerimiz/${s.slug}`}>
-                      Ayrıntılara bak →
+                      Ayrıntılara bak <Icon name="ok" size={16} />
                     </Link>
                   </article>
                 ))}
@@ -89,6 +94,9 @@ export default function HizmetlerPage() {
             {process.map((p) => (
               <div className="step" key={p.step}>
                 <span className="step-num">{p.step}</span>
+                <span className="step-icon">
+                  <Icon name={p.icon} size={22} />
+                </span>
                 <h3>{p.title}</h3>
                 <p>{p.detail}</p>
               </div>

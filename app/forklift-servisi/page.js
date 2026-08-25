@@ -3,6 +3,7 @@ import { cities, otherCities, titleize } from "@/lib/locations";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, LinkChips } from "@/components/Seo";
+import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
   title: "Forklift Servisi | Türkiye Geneli Yerinde Tamir ve Bakım",
@@ -20,6 +21,7 @@ export default function BolgelerPage() {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell">
           <Breadcrumbs
             trail={[
@@ -59,6 +61,9 @@ export default function BolgelerPage() {
             <div className="grid grid--3">
               {list.map((c) => (
                 <article className="card" key={c.slug}>
+                  <span className="card-icon">
+                    <Icon name="konum" size={26} />
+                  </span>
                   <span className="card-code">{c.region}</span>
                   <h3 className="h3">{c.name} Forklift Servisi</h3>
                   <p>{c.sectors}</p>
@@ -72,7 +77,7 @@ export default function BolgelerPage() {
                     className="card-link"
                     href={`/forklift-servisi/${c.slug}`}
                   >
-                    {c.name} sayfasına git →
+                    {c.name} sayfasına git <Icon name="ok" size={16} />
                   </Link>
                 </article>
               ))}

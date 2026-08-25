@@ -2,6 +2,7 @@ import { faqs } from "@/lib/brands";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, FaqList } from "@/components/Seo";
+import { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
   title: "Sıkça Sorulan Sorular | Forklift Servisi",
@@ -14,6 +15,7 @@ export default function SssPage() {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell">
           <Breadcrumbs
             trail={[

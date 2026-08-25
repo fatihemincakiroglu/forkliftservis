@@ -5,6 +5,7 @@ import { cities } from "@/lib/locations";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, JsonLd, LinkChips, serviceJsonLd } from "@/components/Seo";
+import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export function generateStaticParams() {
   return services.map((s) => ({ hizmet: s.slug }));
@@ -30,6 +31,7 @@ export default function ServicePage({ params }) {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell">
           <Breadcrumbs
             trail={[
@@ -39,6 +41,9 @@ export default function ServicePage({ params }) {
             ]}
           />
           <p className="eyebrow">{s.group}</p>
+          <span className="card-icon" style={{ background: "rgba(245,179,1,.14)", color: "#f5b301", marginBottom: 18 }}>
+            <Icon name={s.icon} size={28} />
+          </span>
           <h1 className="h1">{s.title}</h1>
           <p className="hero-lede">{s.lede}</p>
           <div className="btn-row">

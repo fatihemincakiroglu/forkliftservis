@@ -1,5 +1,6 @@
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
+import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
   title: "Hakkımızda",
@@ -12,6 +13,7 @@ export default function Hakkimizda() {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell">
           <p className="eyebrow">Hakkımızda</p>
           <h1 className="h1">
@@ -94,6 +96,9 @@ export default function Hakkimizda() {
               className="card"
               style={{ background: "var(--steel)", borderColor: "var(--steel-line)" }}
             >
+              <span className="card-icon">
+                <Icon name="rapor" size={26} />
+              </span>
               <span className="card-code">01</span>
               <h3 className="h3" style={{ color: "var(--concrete)" }}>
                 Onaysız işlem yok
@@ -107,6 +112,9 @@ export default function Hakkimizda() {
               className="card"
               style={{ background: "var(--steel)", borderColor: "var(--steel-line)" }}
             >
+              <span className="card-icon">
+                <Icon name="saat" size={26} />
+              </span>
               <span className="card-code">02</span>
               <h3 className="h3" style={{ color: "var(--concrete)" }}>
                 Gerçekçi süre
@@ -119,6 +127,9 @@ export default function Hakkimizda() {
               className="card"
               style={{ background: "var(--steel)", borderColor: "var(--steel-line)" }}
             >
+              <span className="card-icon">
+                <Icon name="parca" size={26} />
+              </span>
               <span className="card-code">03</span>
               <h3 className="h3" style={{ color: "var(--concrete)" }}>
                 Değişen parça iade
@@ -131,6 +142,9 @@ export default function Hakkimizda() {
               className="card"
               style={{ background: "var(--steel)", borderColor: "var(--steel-line)" }}
             >
+              <span className="card-icon">
+                <Icon name="garanti" size={26} />
+              </span>
               <span className="card-code">04</span>
               <h3 className="h3" style={{ color: "var(--concrete)" }}>
                 Yazılı garanti

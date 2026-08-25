@@ -15,15 +15,29 @@ export default function Footer() {
               yerinde servis.
             </p>
             <p style={{ margin: "0 0 14px" }}>
-              {site.address.street}
-              <br />
-              {site.address.postalCode} {site.address.district} /{" "}
-              {site.address.city}
+              <a
+                href={site.address.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {site.address.street}
+                <br />
+                {site.address.postalCode} {site.address.district} /{" "}
+                {site.address.city}
+              </a>
             </p>
             <p style={{ margin: 0 }}>
               <a href={`tel:${site.phoneHref}`} style={{ color: "#FFC61E" }}>
                 {site.phoneDisplay}
               </a>
+              {site.phone2Display && (
+                <>
+                  <br />
+                  <a href={`tel:${site.phone2Href}`} style={{ color: "#FFC61E" }}>
+                    {site.phone2Display}
+                  </a>
+                </>
+              )}
               <br />
               <a href={`mailto:${site.email}`}>{site.email}</a>
             </p>

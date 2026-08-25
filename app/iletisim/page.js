@@ -1,5 +1,6 @@
 import { site } from "@/lib/site";
 import ServiceForm from "@/components/ServiceForm";
+import Icon, { ForkliftIllustration } from "@/components/Icons";
 
 export const metadata = {
   title: "İletişim ve Servis Talebi",
@@ -12,6 +13,7 @@ export default function Iletisim() {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell">
           <p className="eyebrow">İletişim</p>
           <h1 className="h1">
@@ -26,8 +28,13 @@ export default function Iletisim() {
             <a className="btn btn--signal" href={`tel:${site.phoneHref}`}>
               {site.phoneDisplay}
             </a>
-            <a className="btn btn--outline" href={`tel:${site.phone2Href}`}>
-              {site.phone2Display}
+            {site.phone2Display && (
+              <a className="btn btn--outline" href={`tel:${site.phone2Href}`}>
+                {site.phone2Display}
+              </a>
+            )}
+            <a className="btn btn--outline" href={`mailto:${site.email}`}>
+              E-posta gönder
             </a>
           </div>
         </div>
@@ -49,45 +56,83 @@ export default function Iletisim() {
             <p className="eyebrow">Doğrudan erişim</p>
             <dl className="contact-list">
               <div className="contact-item">
-                <dt>Telefon</dt>
-                <dd>
-                  <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a>
-                </dd>
+                <span className="contact-icon">
+                  <Icon name="telefon" size={20} />
+                </span>
+                <div>
+                  <dt>Telefon</dt>
+                  <dd>
+                    <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a>
+                  </dd>
+                </div>
               </div>
-              <div className="contact-item">
-                <dt>Acil hat</dt>
-                <dd>
-                  <a href={`tel:${site.phone2Href}`}>{site.phone2Display}</a>
-                </dd>
-              </div>
-              <div className="contact-item">
-                <dt>E-posta</dt>
-                <dd>
-                  <a href={`mailto:${site.email}`}>{site.email}</a>
-                </dd>
-              </div>
-              <div className="contact-item">
-                <dt>Adres</dt>
-                <dd>
-                  {site.address.street}
-                  <br />
-                  {site.address.postalCode} {site.address.district} /{" "}
-                  {site.address.city}
-                </dd>
-              </div>
-              <div className="contact-item">
-                <dt>Çalışma saatleri</dt>
-                <dd>
-                  {site.hours.weekday}
-                  <br />
-                  <span style={{ color: "var(--signal-deep)" }}>
-                    {site.hours.emergency}
+              {site.phone2Display && (
+                <div className="contact-item">
+                  <span className="contact-icon">
+                    <Icon name="telefon" size={20} />
                   </span>
-                </dd>
+                  <div>
+                    <dt>Acil hat</dt>
+                    <dd>
+                      <a href={`tel:${site.phone2Href}`}>{site.phone2Display}</a>
+                    </dd>
+                  </div>
+                </div>
+              )}
+              <div className="contact-item">
+                <span className="contact-icon">
+                  <Icon name="eposta" size={20} />
+                </span>
+                <div>
+                  <dt>E-posta</dt>
+                  <dd>
+                    <a href={`mailto:${site.email}`}>{site.email}</a>
+                  </dd>
+                </div>
               </div>
               <div className="contact-item">
-                <dt>Servis alanı</dt>
-                <dd>{site.coverage}</dd>
+                <span className="contact-icon">
+                  <Icon name="konum" size={20} />
+                </span>
+                <div>
+                  <dt>Adres</dt>
+                  <dd>
+                    <a
+                      href={site.address.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {site.address.street}
+                      <br />
+                      {site.address.postalCode} {site.address.district} /{" "}
+                      {site.address.city}
+                    </a>
+                  </dd>
+                </div>
+              </div>
+              <div className="contact-item">
+                <span className="contact-icon">
+                  <Icon name="saat" size={20} />
+                </span>
+                <div>
+                  <dt>Çalışma saatleri</dt>
+                  <dd>
+                    {site.hours.weekday}
+                    <br />
+                    <span style={{ color: "var(--yellow-dark)" }}>
+                      {site.hours.emergency}
+                    </span>
+                  </dd>
+                </div>
+              </div>
+              <div className="contact-item">
+                <span className="contact-icon">
+                  <Icon name="arac" size={20} />
+                </span>
+                <div>
+                  <dt>Servis alanı</dt>
+                  <dd>{site.coverage}</dd>
+                </div>
               </div>
             </dl>
           </div>

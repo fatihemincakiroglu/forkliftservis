@@ -5,6 +5,7 @@ import { services } from "@/lib/services";
 import { site } from "@/lib/site";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs, JsonLd, LinkChips, serviceJsonLd } from "@/components/Seo";
+import { ForkliftIllustration } from "@/components/Icons";
 
 export function generateStaticParams() {
   const params = [];
@@ -40,6 +41,7 @@ export default function DistrictPage({ params }) {
   return (
     <>
       <section className="hero">
+        <ForkliftIllustration className="hero-art" />
         <div className="shell hero-grid">
           <div>
             <Breadcrumbs

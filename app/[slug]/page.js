@@ -36,8 +36,12 @@ export function generateMetadata({ params }) {
 
   const service = getService(params.slug);
   if (service) {
+    // metaTitle varsa şablon eki eklenmez; başlık tam olarak
+    // "Ana ifade - İkinci ifade" biçiminde görünür.
     return {
-      title: service.name,
+      title: service.metaTitle
+        ? { absolute: service.metaTitle }
+        : service.name,
       description: service.description,
       alternates: { canonical: serviceHref(service.slug) },
       openGraph: {

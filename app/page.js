@@ -114,7 +114,7 @@ export default function Home() {
                 keçe ve hidrolik parçalar stoktan; özel parçalar için tedarik
                 süresi baştan yazılı bildirilir.
               </p>
-              <Link className="card-link" href="/yedek-parca">
+              <Link className="card-link" href="/forklift-yedek-parca">
                 Parça kataloğuna bak <Icon name="ok" size={16} />
               </Link>
             </article>

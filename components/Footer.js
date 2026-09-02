@@ -52,7 +52,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/yedek-parca">Forklift Yedek Parça</Link>
+                <Link href="/forklift-yedek-parca">Forklift Yedek Parça</Link>
               </li>
             </ul>
           </div>

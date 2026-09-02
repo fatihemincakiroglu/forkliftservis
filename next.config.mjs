@@ -32,6 +32,12 @@ const nextConfig = {
         destination: "/:slug",
         permanent: true,
       },
+      // /yedek-parca  ->  /forklift-yedek-parca
+      {
+        source: "/yedek-parca",
+        destination: "/forklift-yedek-parca",
+        permanent: true,
+      },
       // Kaldırılan marka sayfaları
       {
         source: "/markalar",

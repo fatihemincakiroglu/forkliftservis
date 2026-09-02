@@ -15,7 +15,7 @@ export default function sitemap() {
     entry("", 1.0, "weekly"),
     entry("/forklift-servisi", 0.9, "weekly"),
     entry("/hizmetlerimiz", 0.9),
-    entry("/yedek-parca", 0.8),
+    entry("/forklift-yedek-parca", 0.8),
     entry("/referanslar", 0.7),
     entry("/sss", 0.7),
     entry("/hakkimizda", 0.5),

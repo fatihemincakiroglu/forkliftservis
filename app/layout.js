@@ -67,7 +67,7 @@ export default function RootLayout({ children }) {
       "Forklift yedek parça",
       "Akülü forklift servisi",
       "Dizel forklift servisi",
-      "LPG'li forklift servisi",
+      "LPG forklift servisi",
       "Transpalet servisi",
       "İstif makinesi servisi",
     ],

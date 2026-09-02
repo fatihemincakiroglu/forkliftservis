@@ -32,6 +32,12 @@ const nextConfig = {
         destination: "/:slug",
         permanent: true,
       },
+      // /lpgli-forklift-servisi  ->  /lpg-forklift-servisi
+      {
+        source: "/lpgli-forklift-servisi",
+        destination: "/lpg-forklift-servisi",
+        permanent: true,
+      },
       // /yedek-parca  ->  /forklift-yedek-parca
       {
         source: "/yedek-parca",

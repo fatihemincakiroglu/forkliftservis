@@ -1,14 +1,22 @@
 import Link from "next/link";
 import { services, serviceHref } from "@/lib/services";
-import { cities, regionHref } from "@/lib/locations";
+
 import { site } from "@/lib/site";
-import { getContent, shared, decisionRows } from "@/lib/serviceContent";
+import {
+  getContent,
+  getMachineContent,
+  shared,
+  decisionRows,
+} from "@/lib/serviceContent";
 import { CtaBand } from "@/components/CtaBand";
-import { JsonLd, LinkChips, FaqList, serviceJsonLd } from "@/components/Seo";
+import { JsonLd, FaqList, serviceJsonLd } from "@/components/Seo";
 import Icon from "@/components/Icons";
 import PageHeader from "@/components/PageHeader";
 import Figure from "@/components/Figure";
 import ArticleNav from "@/components/ArticleNav";
+import ServiceAreas from "@/components/ServiceAreas";
+import RelatedServices from "@/components/RelatedServices";
+import MachineArticle, { MACHINE_SECTIONS } from "@/components/MachineArticle";
 
 /* Ortak metinlerdeki yer tutucuları doldurur */
 function fill(text, focus) {
@@ -34,10 +42,12 @@ const SECTIONS = [
 
 export default function ServiceView({ service: s }) {
   const c = getContent(s.slug);
-  const focus = c?.focus || s.name.toLocaleLowerCase("tr-TR");
+  const m = getMachineContent(s.slug);
+  const sections = m ? MACHINE_SECTIONS : SECTIONS;
+  const focus = c?.focus || m?.focus || s.name.toLocaleLowerCase("tr-TR");
   const F = (t) => fill(t, focus);
 
-  const others = services.filter((x) => x.slug !== s.slug).slice(0, 8);
+  const others = services.filter((x) => x.slug !== s.slug).slice(0, 6);
 
   return (
     <>
@@ -54,7 +64,7 @@ export default function ServiceView({ service: s }) {
       <section className="svc-lead">
         <div className="shell svc-lead-grid">
           <div>
-            <p className="svc-lede">{c ? c.intro[0] : s.lede}</p>
+            <p className="svc-lede">{(c || m)?.intro?.[0] || s.lede}</p>
             <div className="svc-lead-actions">
               <a className="btn btn--signal" href={`tel:${site.phoneHref}`}>
                 <Icon name="telefon" size={17} />
@@ -97,7 +107,7 @@ export default function ServiceView({ service: s }) {
         <div className="shell svc-body-grid">
           {/* --- Yan sütun --- */}
           <aside className="svc-aside">
-            <ArticleNav sections={SECTIONS} />
+            <ArticleNav sections={sections} />
 
             <div className="svc-cta-card">
               <span className="svc-cta-icon">
@@ -116,7 +126,9 @@ export default function ServiceView({ service: s }) {
 
           {/* --- Ana içerik --- */}
           <article className="svc-article">
-            {c ? (
+            {m ? (
+              <MachineArticle service={s} content={m} />
+            ) : c ? (
               <>
                 {c.intro.slice(1).map((p, i) => (
                   <p key={i} className="svc-p">
@@ -358,15 +370,6 @@ export default function ServiceView({ service: s }) {
                   <FaqList items={c.faq} />
                 </section>
 
-                {/* ---- Sonuç ---- */}
-                <div className="svc-conclusion">
-                  <h2 className="svc-h2">Sonuç</h2>
-                  {c.conclusion.map((p, i) => (
-                    <p key={i} className="svc-p">
-                      {p}
-                    </p>
-                  ))}
-                </div>
               </>
             ) : (
               /* İçerik kaydı olmayan hizmetler için kısa şablon */
@@ -409,13 +412,13 @@ export default function ServiceView({ service: s }) {
           <div className="section-head">
             <p className="eyebrow">Nerede hizmet veriyoruz</p>
             <h2 className="h2">{s.name} verdiğimiz bölgeler</h2>
+            <p className="lede">
+              Türkiye genelinde 81 ilde hizmet veriyoruz. Aşağıdaki illerde
+              düzenli servis rotamız bulunuyor, diğer illere talep üzerine ekip
+              yönlendiriyoruz.
+            </p>
           </div>
-          <LinkChips
-            items={cities.map((x) => ({
-              href: regionHref(x.slug),
-              label: `${x.name} forklift servisi`,
-            }))}
-          />
+          <ServiceAreas serviceName={s.name} />
         </div>
       </section>
 
@@ -424,14 +427,13 @@ export default function ServiceView({ service: s }) {
         <div className="shell">
           <div className="section-head">
             <p className="eyebrow">İlgili hizmetler</p>
-            <h2 className="h2">Diğer servis kalemleri</h2>
+            <h2 className="h2">Bu makinede ayrıca baktığımız işler</h2>
+            <p className="lede">
+              Arıza çoğu zaman tek bir sistemle sınırlı kalmaz. Aynı ziyarette
+              aşağıdaki kalemleri de kontrol edip tek raporda topluyoruz.
+            </p>
           </div>
-          <LinkChips
-            items={others.map((o) => ({
-              href: serviceHref(o.slug),
-              label: o.name,
-            }))}
-          />
+          <RelatedServices items={others} />
         </div>
       </section>
 

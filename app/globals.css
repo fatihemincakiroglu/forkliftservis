@@ -8,9 +8,13 @@
   /* Renk */
   --navy: #15263c;
   --navy-2: #1e3550;
-  --yellow: #f5b301;
-  --yellow-dark: #d09600;
-  --yellow-soft: #fff6dd;
+  /* Vurgu rengi logodan alınmıştır (#FF9800).
+     --accent  : dolgu ve zeminlerde kullanılır
+     --accent-dark : açık zeminde metin için, okunabilir kontrast
+     --accent-soft : yumuşak zemin tonu */
+  --yellow: #ff9800;
+  --yellow-dark: #b35f00;
+  --yellow-soft: #fff3e2;
 
   --bg: #ffffff;
   --bg-alt: #f4f6f9;
@@ -201,13 +205,13 @@ a {
   background: var(--yellow);
   color: var(--navy);
   border-color: var(--yellow);
-  box-shadow: 0 3px 10px rgba(245, 179, 1, 0.32);
+  box-shadow: 0 3px 10px rgba(255, 152, 0, 0.32);
 }
 
 .btn--signal:hover {
   background: var(--yellow-dark);
   border-color: var(--yellow-dark);
-  box-shadow: 0 6px 18px rgba(245, 179, 1, 0.36);
+  box-shadow: 0 6px 18px rgba(255, 152, 0, 0.36);
 }
 
 .btn--outline {
@@ -336,45 +340,11 @@ a {
   flex-shrink: 1;
 }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
 .header-actions {
   display: flex;
   align-items: center;
   gap: 10px;
   flex: none;
-}
-
-.brand-mark {
-  width: 42px;
-  height: 42px;
-  flex: none;
-  display: grid;
-  place-items: center;
-  background: var(--navy);
-  color: var(--yellow);
-  border-radius: var(--radius-sm);
-}
-
-.brand-name {
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.brand-sub {
-  font-size: 11.5px;
-  letter-spacing: 0.06em;
-  color: var(--text-mute);
-  white-space: nowrap;
 }
 
 .nav {
@@ -411,7 +381,7 @@ a {
   letter-spacing: -0.01em;
   text-decoration: none;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(245, 179, 1, 0.3);
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
   transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
@@ -473,8 +443,8 @@ a {
   height: 620px;
   background: radial-gradient(
     circle,
-    rgba(245, 179, 1, 0.16) 0%,
-    rgba(245, 179, 1, 0.05) 42%,
+    rgba(255, 152, 0, 0.16) 0%,
+    rgba(255, 152, 0, 0.05) 42%,
     transparent 68%
   );
   pointer-events: none;
@@ -663,7 +633,7 @@ a {
 }
 
 .section--dark .card-icon {
-  background: rgba(245, 179, 1, 0.14);
+  background: rgba(255, 152, 0, 0.14);
   color: var(--yellow);
 }
 
@@ -754,7 +724,7 @@ a {
 }
 
 .section--dark .row-icon {
-  background: rgba(245, 179, 1, 0.14);
+  background: rgba(255, 152, 0, 0.14);
   color: var(--yellow);
 }
 
@@ -851,7 +821,7 @@ a {
   margin-top: 4px;
   border-radius: 50%;
   background: var(--yellow-soft)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d09600' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b35f00' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7'/%3E%3C/svg%3E")
     center / 12px 12px no-repeat;
 }
 
@@ -860,8 +830,8 @@ a {
 }
 
 .section--dark .checklist li::before {
-  background-color: rgba(245, 179, 1, 0.16);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5b301' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7'/%3E%3C/svg%3E");
+  background-color: rgba(255, 152, 0, 0.16);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff9800' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7'/%3E%3C/svg%3E");
 }
 
 .checklist a {
@@ -994,7 +964,7 @@ a {
 .field textarea:focus {
   border-color: var(--yellow-dark);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(245, 179, 1, 0.22);
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.22);
 }
 
 .field-pair {
@@ -1191,7 +1161,7 @@ a {
   margin-top: -13px;
   border-radius: 50%;
   background: var(--yellow-soft)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d09600' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b35f00' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
     center / 15px 15px no-repeat;
   transition: transform 0.2s ease;
 }
@@ -1255,7 +1225,7 @@ a {
 
 .section--dark .chips a:hover {
   border-color: var(--yellow);
-  background: rgba(245, 179, 1, 0.12);
+  background: rgba(255, 152, 0, 0.12);
 }
 
 /* ---------- Sütunlu bağlantı listesi ---------- */
@@ -1326,7 +1296,7 @@ a {
   width: 20px;
   height: 20px;
   margin-top: 2px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5b301' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3 1.8 20.5h20.4L12 3Z'/%3E%3Cpath d='M12 9.5v4.6M12 17.4h.01'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff9800' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3 1.8 20.5h20.4L12 3Z'/%3E%3Cpath d='M12 9.5v4.6M12 17.4h.01'/%3E%3C/svg%3E")
     center / contain no-repeat;
 }
 
@@ -1585,7 +1555,7 @@ a {
 }
 
 .section--dark .region-group-icon {
-  background: rgba(245, 179, 1, 0.14);
+  background: rgba(255, 152, 0, 0.14);
   color: var(--yellow);
 }
 
@@ -1652,7 +1622,7 @@ a {
 }
 
 .section--dark .region-list a:hover {
-  background: rgba(245, 179, 1, 0.11);
+  background: rgba(255, 152, 0, 0.11);
   color: var(--yellow);
 }
 
@@ -1717,7 +1687,7 @@ a {
   height: 420px;
   background: radial-gradient(
     circle,
-    rgba(245, 179, 1, 0.14) 0%,
+    rgba(255, 152, 0, 0.14) 0%,
     transparent 66%
   );
   pointer-events: none;
@@ -2034,7 +2004,7 @@ a {
 .float-btn--tel {
   background: var(--yellow);
   color: var(--navy);
-  box-shadow: 0 6px 20px rgba(245, 179, 1, 0.42);
+  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.42);
 }
 
 .float-btn--tel:hover {
@@ -2095,19 +2065,6 @@ a {
   .header-inner {
     min-height: 64px;
     gap: 10px;
-  }
-
-  .brand-mark {
-    width: 38px;
-    height: 38px;
-  }
-
-  .brand-name {
-    font-size: 0.98rem;
-  }
-
-  .brand-sub {
-    font-size: 10.5px;
   }
 
   /* Telefon butonu: alt çubuk devraldığı için başlıkta ikon olarak kalsın */
@@ -2254,23 +2211,10 @@ a {
 
 @media (max-width: 400px) {
   /* Çok dar ekranlarda alan adı satırını gizle */
-  .brand-sub {
-    display: none;
-  }
-
-  .brand-name {
-    font-size: 0.94rem;
-    white-space: normal;
-    line-height: 1.25;
-  }
 
   .mobile-bar-btn {
     font-size: 0.9rem;
     gap: 7px;
-  }
-
-  .brand-name {
-    font-size: 0.9rem;
   }
 
   .region-list a {
@@ -2390,9 +2334,9 @@ body {
 }
 
 .mobile-bar-btn--tel {
-  background: linear-gradient(135deg, #ffc933 0%, #f5b301 55%, #e0a300 100%);
+  background: linear-gradient(135deg, #ffb340 0%, #ff9800 55%, #e07f00 100%);
   color: var(--navy);
-  box-shadow: 0 4px 14px rgba(245, 179, 1, 0.38);
+  box-shadow: 0 4px 14px rgba(255, 152, 0, 0.38);
 }
 
 .mobile-bar-btn--tel .mobile-bar-icon {
@@ -2447,24 +2391,14 @@ body {
 
 @media (hover: hover) and (pointer: fine) {
   /* --- Logo --- */
-  .brand:hover .brand-mark {
-    background: var(--yellow);
-    color: var(--navy);
-    transform: rotate(-4deg) scale(1.06);
+  .brand-logo {
+    transition: opacity 0.18s ease;
   }
 
-  .brand-mark {
-    transition: background-color 0.2s ease, color 0.2s ease,
-      transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+  .brand:hover .brand-logo {
+    opacity: 0.78;
   }
 
-  .brand:hover .brand-name {
-    color: var(--yellow-dark);
-  }
-
-  .brand-name {
-    transition: color 0.18s ease;
-  }
 
   /* --- Görseller: hafif yakınlaşma --- */
   .figure img {
@@ -2570,7 +2504,7 @@ body {
   }
 
   .step:hover .step-num {
-    color: rgba(245, 179, 1, 0.28);
+    color: rgba(255, 152, 0, 0.28);
   }
 
   /* --- İstatistik kartları --- */
@@ -2642,7 +2576,7 @@ body {
   }
 
   .signs li:hover {
-    background: rgba(245, 179, 1, 0.09);
+    background: rgba(255, 152, 0, 0.09);
     transform: translateX(3px);
   }
 
@@ -2654,7 +2588,7 @@ body {
 
   .brands span:hover {
     border-color: var(--yellow);
-    background: rgba(245, 179, 1, 0.1);
+    background: rgba(255, 152, 0, 0.1);
     color: var(--yellow);
     transform: translateY(-2px);
   }
@@ -2834,7 +2768,7 @@ body {
     ),
     radial-gradient(
       ellipse 60% 80% at 92% 10%,
-      rgba(245, 179, 1, 0.16),
+      rgba(255, 152, 0, 0.16),
       transparent 62%
     );
 }
@@ -2932,7 +2866,7 @@ body {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: rgba(245, 179, 1, 0.16);
+  background: rgba(255, 152, 0, 0.16);
   color: var(--yellow);
 }
 
@@ -3159,7 +3093,7 @@ body {
       ),
       radial-gradient(
         ellipse 70% 50% at 80% 0%,
-        rgba(245, 179, 1, 0.16),
+        rgba(255, 152, 0, 0.16),
         transparent 62%
       );
   }
@@ -3885,7 +3819,7 @@ body {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: rgba(245, 179, 1, 0.16);
+  background: rgba(255, 152, 0, 0.16);
   color: var(--yellow);
   margin-bottom: 14px;
 }
@@ -4182,7 +4116,7 @@ body {
 
 .callout--warn {
   background: var(--yellow-soft);
-  border: 1px solid rgba(208, 150, 0, 0.3);
+  border: 1px solid rgba(179, 95, 0, 0.28);
   border-left: 4px solid var(--yellow-dark);
 }
 
@@ -4196,7 +4130,7 @@ body {
   margin: 0;
   font-size: 0.97rem;
   line-height: 1.62;
-  color: #5c4708;
+  color: #5b3200;
 }
 
 /* --- İşlem listesi --- */
@@ -4786,5 +4720,38 @@ body {
     border-top-color: var(--yellow);
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
+  }
+}
+
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.brand-logo {
+  width: auto;
+  height: 46px;
+  display: block;
+}
+
+.footer-logo {
+  width: auto;
+  height: 62px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 760px) {
+  .brand-logo {
+    height: 36px;
+  }
+
+  .footer-logo {
+    height: 52px;
+  }
+}
+
+@media (max-width: 400px) {
+  .brand-logo {
+    height: 31px;
   }
 }

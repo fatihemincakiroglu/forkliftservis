@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/lib/site";
 import { services, serviceHref } from "@/lib/services";
 import { cities, regionHref } from "@/lib/locations";
@@ -9,7 +10,13 @@ export default function Footer() {
       <div className="shell">
         <div className="footer-grid footer-grid--wide">
           <div>
-            <p className="footer-title">{site.domain}</p>
+            <Image
+              src="/logo/logo-tam-beyaz.png"
+              alt={site.name}
+              width={1561}
+              height={434}
+              className="footer-logo"
+            />
             <p style={{ margin: "0 0 16px", maxWidth: "34ch" }}>
               {site.tagline}. Dizel, LPG ve akülü tüm forklift tiplerinde
               yerinde servis.

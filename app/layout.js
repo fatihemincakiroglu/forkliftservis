@@ -34,8 +34,13 @@ export const metadata = {
     title: "Forklift Servis ve Forklift Tamir Hizmeti",
     description:
       "Uzman forklift servis ve forklift tamir hizmeti ile arızalara hızlı çözüm sunuyoruz. Periyodik bakım, acil servis ve garantili onarım desteği.",
+    images: [{ url: "/logo/logo-tam.png", width: 1561, height: 434 }],
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [{ url: "/logo/simge.png", type: "image/png" }],
+    apple: [{ url: "/logo/simge.png" }],
+  },
 };
 
 export const viewport = {
@@ -49,6 +54,8 @@ export default function RootLayout({ children }) {
     name: site.name,
     legalName: site.legalName,
     url: site.url,
+    logo: `${site.url}/logo/logo-tam.png`,
+    image: `${site.url}/logo/logo-tam.png`,
     email: site.email,
     telephone: site.phoneHref,
     description: site.tagline,

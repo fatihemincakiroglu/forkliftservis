@@ -119,6 +119,7 @@ export function organizationJsonLd() {
     name: site.name,
     legalName: site.legalName,
     url: site.url,
+    logo: `${site.url}/logo/logo-tam.png`,
     email: site.email,
     telephone: site.phoneHref,
     foundingDate: String(site.foundedYear),

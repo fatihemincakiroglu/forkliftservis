@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import { services, serviceGroups, serviceHref } from "@/lib/services";
@@ -70,14 +71,20 @@ export default function Header() {
 
       <header className="site-header">
         <div className="shell header-inner">
-          <Link href="/" className="brand" onClick={closeAll}>
-            <span className="brand-mark" aria-hidden="true">
-              <Icon name="forklift" size={26} />
-            </span>
-            <span className="brand-text">
-              <span className="brand-name">{site.name}</span>
-              <span className="brand-sub">{site.domain}</span>
-            </span>
+          <Link
+            href="/"
+            className="brand"
+            onClick={closeAll}
+            aria-label={`${site.name} anasayfa`}
+          >
+            <Image
+              src="/logo/logo.png"
+              alt={site.name}
+              width={1409}
+              height={326}
+              priority
+              className="brand-logo"
+            />
           </Link>
 
           <nav className={open ? "nav nav--open" : "nav"}>

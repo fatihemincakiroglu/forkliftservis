@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
-import { references, referenceLogos, initial } from "@/lib/references";
+import { references, referenceLogos } from "@/lib/references";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd, itemListJsonLd, webPageJsonLd } from "@/components/Seo";
 import PageHeader from "@/components/PageHeader";
@@ -104,9 +104,6 @@ export default function ReferanslarPage() {
           <div className="ref-grid">
             {references.map((r) => (
               <div className="ref-item" key={r}>
-                <span className="ref-initial" aria-hidden="true">
-                  {initial(r)}
-                </span>
                 <span className="ref-name">{r}</span>
               </div>
             ))}

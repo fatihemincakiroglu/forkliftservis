@@ -1,5 +1,5 @@
 import { site } from "@/lib/site";
-import ServiceForm from "@/components/ServiceForm";
+import QuickForm from "@/components/QuickForm";
 import Icon from "@/components/Icons";
 import PageHeader from "@/components/PageHeader";
 import { JsonLd, webPageJsonLd } from "@/components/Seo";
@@ -27,10 +27,16 @@ export default function Iletisim() {
         <div className="shell split">
           <div>
             <p className="eyebrow">Servis talep formu</p>
-            <h2 className="h2" style={{ marginBottom: 28 }}>
-              Talebinizi iletin
-            </h2>
-            <ServiceForm />
+            <h2 className="h2">Talebinizi iletin</h2>
+            <p className="lede" style={{ marginBottom: 26 }}>
+              Dört alan yeterli. Bilgileri aldıktan sonra ilk uygun teknisyeni
+              planlayıp size dönüyoruz.
+            </p>
+            <QuickForm
+              withNote
+              title="Servis talebi"
+              subtitle="Aynı gün planlama yapıyoruz"
+            />
           </div>
 
           <div>

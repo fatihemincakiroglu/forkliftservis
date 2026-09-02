@@ -4,7 +4,7 @@ import { services, serviceHref } from "@/lib/services";
 import { faqs } from "@/lib/faqs";
 import ServiceNetwork from "@/components/ServiceNetwork";
 import { CtaBand } from "@/components/CtaBand";
-import { FaqList, LinkChips } from "@/components/Seo";
+import { FaqList } from "@/components/Seo";
 import Icon from "@/components/Icons";
 import HeroSlider from "@/components/HeroSlider";
 import Figure, { FigureStrip } from "@/components/Figure";
@@ -182,13 +182,19 @@ export default function Home() {
             ))}
           </div>
 
-          <div style={{ marginTop: 36 }}>
-            <LinkChips
-              items={services.map((s) => ({
-                href: serviceHref(s.slug),
-                label: s.name,
-              }))}
-            />
+          <div className="svc-links">
+            <p className="svc-links-title">Tüm servis kalemleri</p>
+            <div className="svc-links-grid">
+              {services.map((x) => (
+                <Link key={x.slug} href={serviceHref(x.slug)}>
+                  <span className="svc-links-icon">
+                    <Icon name={x.icon} size={18} />
+                  </span>
+                  {x.name}
+                  <Icon name="ok" size={15} />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -218,39 +224,59 @@ export default function Home() {
 
       {/* ---------- PERİYODİK BAKIM ---------- */}
       <section className="section section--concrete">
-        <div className="shell split">
-          <div>
+        <div className="shell">
+          <div className="section-head">
             <p className="eyebrow">Periyodik bakım</p>
             <h2 className="h2">Duruşun çoğu önceden görülebilir</h2>
             <p className="lede">
-              Plansız arızaların büyük bölümü, zamanında yapılmamış bir filtre
+              Plansız arızaların büyük bölümü zamanında yapılmamış bir filtre
               değişimine ya da fark edilmemiş bir hidrolik kaçağa dayanır.
-              Periyodik bakımda her makine için aynı kontrol listesi uygulanır ve
-              sonuç yazılı raporlanır.
+              Periyodik bakımda her makine için aynı kontrol listesi uygulanır,
+              ölçüm değerleri yazılı raporla teslim edilir.
             </p>
-            <div className="btn-row">
-              <Link className="btn btn--signal" href="/forklift-periyodik-bakim">
-                Bakım kapsamını gör
-              </Link>
-            </div>
           </div>
 
-          <div>
-            <Figure
-              src="/gorseller/forklift-mast-hidrolik-bakim.webp"
-              alt="Forklift mast ve hidrolik sistem periyodik bakımı"
-              width={1200}
-              height={1200}
-              caption="Mast grubu, hidrolik hatlar ve emniyet etiketlerinin kontrolü"
-              className="mb-24"
-            />
-            <ul className="checklist" style={{ gridTemplateColumns: "1fr" }}>
-              {maintenanceScope.map((m) => (
-                <li key={m}>
-                  <span>{m}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="maint-grid">
+            <div className="maint-visual">
+              <Figure
+                src="/gorseller/forklift-mast-hidrolik-bakim.webp"
+                alt="Forklift mast ve hidrolik sistem periyodik bakımı"
+                width={1200}
+                height={1200}
+                caption="Mast grubu, hidrolik hatlar ve emniyet etiketlerinin kontrolü"
+              />
+              <div className="maint-cta">
+                <div>
+                  <strong>Bakım aralığı nasıl belirlenir?</strong>
+                  <span>
+                    Tek vardiyada 250 saat, ağır koşullarda daha kısa aralık
+                  </span>
+                </div>
+                <Link
+                  className="btn btn--signal"
+                  href="/forklift-periyodik-bakim"
+                >
+                  Bakım kapsamını gör
+                </Link>
+              </div>
+            </div>
+
+            <div className="maint-list">
+              <p className="maint-list-title">
+                <Icon name="kontrol" size={17} />
+                Her bakımda uygulanan kontrol listesi
+              </p>
+              <ol>
+                {maintenanceScope.map((m, i) => (
+                  <li key={m}>
+                    <span className="maint-num">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {m}
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </div>
       </section>

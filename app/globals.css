@@ -1324,42 +1324,10 @@ a {
   /* Mobil menü: başlığın altından ekranın altına kadar uzanan,
      kendi içinde kaydırılabilen panel. Sayfa yüksekliğine bağlı
      olmadığı için uzun listeler sorunsuz kayar. */
-  .nav--open {
-    display: block;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* top değeri Header bileşeni tarafından ölçülüp verilir */
-    top: 64px;
-    background: #fff;
-    border-top: 1px solid var(--border);
-    padding: 10px var(--gutter) 96px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    z-index: 45;
-  }
 
-  .nav--open > a,
-  .nav--open > .nav-item {
-    display: block;
-    border-bottom: 1px solid var(--border);
-  }
 
-  .nav--open > a:last-child,
-  .nav--open > .nav-item:last-child {
-    border-bottom: 0;
-  }
 
-  .nav--open a {
-    padding: 14px 10px;
-    border-radius: 0;
-  }
 
-  .nav--open .nav-item-row > a {
-    padding-block: 15px;
-  }
 
   /* Panel açıkken alt çubuk görünmeye devam etsin ama
      listenin son maddesini örtmesin (padding-bottom yukarıda). */
@@ -5642,32 +5610,8 @@ body {
    ============================================================ */
 
 @media (max-width: 1080px) {
-  .nav--open {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* top değeri Header tarafından ölçülüp satır içi verilir */
-    display: block;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    background: #fff;
-    border-top: 1px solid var(--border);
-    box-shadow: 0 8px 30px rgba(21, 38, 60, 0.16);
-    padding: 12px var(--gutter) calc(90px + env(safe-area-inset-bottom));
-    z-index: 45;
-  }
 
-  .nav--open > a,
-  .nav--open .nav-item {
-    border-bottom: 1px solid var(--border);
-  }
 
-  .nav--open > a:last-child,
-  .nav--open .nav-item:last-child {
-    border-bottom: 0;
-  }
 }
 
 /* ============================================================
@@ -6758,5 +6702,310 @@ body {
 
   .request-list li:hover {
     background: var(--yellow-soft);
+  }
+}
+
+/* ============================================================
+   MOBİL MENÜ
+   Panel <header> dışında, doğrudan gövdenin çocuğu olarak
+   render edilir. Başlıkta backdrop-filter bulunduğu için
+   panel header içinde kalsaydı position:fixed viewport'a göre
+   çalışmaz, yükseklik ve kaydırma bozulurdu.
+   ============================================================ */
+
+/* Menü açıkken arka plan kaymaz */
+body.menu-open {
+  overflow: hidden;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 46;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  box-shadow: 0 12px 34px rgba(21, 38, 60, 0.16);
+}
+
+.mobile-menu-scroll {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px var(--gutter) calc(88px + env(safe-area-inset-bottom));
+}
+
+/* --- Ana menü satırları --- */
+
+.mobile-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-menu-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu-row > a {
+  flex: 1;
+  padding: 15px 4px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.mobile-menu-row > a:active {
+  color: var(--yellow-dark);
+}
+
+.mobile-menu-toggle {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text-mute);
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.mobile-menu-toggle.is-open {
+  transform: rotate(180deg);
+  border-color: var(--yellow);
+  color: var(--yellow-dark);
+}
+
+/* --- Hizmet alt listesi --- */
+
+.mobile-menu-sub {
+  padding: 6px 0 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu-sub-title {
+  margin: 12px 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--yellow-dark);
+}
+
+.mobile-menu-sub ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-menu-sub a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 12px;
+  border-radius: 8px;
+  font-size: 0.94rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.mobile-menu-sub a svg {
+  flex: none;
+  color: var(--yellow-dark);
+  opacity: 0.85;
+}
+
+.mobile-menu-sub a:active {
+  background: var(--yellow-soft);
+}
+
+/* --- Alt telefon bloğu --- */
+
+.mobile-menu-call {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 18px;
+  padding: 15px 18px;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.mobile-menu-call svg {
+  flex: none;
+  color: var(--yellow);
+}
+
+.mobile-menu-call small {
+  display: block;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: #a9bccf;
+}
+
+.mobile-menu-call strong {
+  display: block;
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-top: 2px;
+}
+
+@media (max-width: 1080px) {
+  .mobile-menu {
+    display: block;
+  }
+}
+
+
+/* ============================================================
+   MOBİL MENÜ PANELİ
+   Başlığın dışında render edilir; kapsayıcı bloğu viewport'tur.
+   ============================================================ */
+
+body.nav-locked {
+  overflow: hidden;
+}
+
+.mobile-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px var(--gutter) calc(96px + env(safe-area-inset-bottom));
+}
+
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mobile-nav-row > a {
+  flex: 1;
+  display: block;
+  padding: 15px 4px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.mobile-nav-toggle {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text-mute);
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.mobile-nav-toggle.is-open {
+  transform: rotate(180deg);
+  color: var(--yellow-dark);
+  border-color: var(--yellow);
+}
+
+.mobile-nav-sub {
+  margin: 0 0 14px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mobile-nav-sub .nav-mega-grid {
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 14px 14px 10px;
+}
+
+.mobile-nav-sub .nav-mega-col a {
+  padding: 10px 10px;
+  font-size: 0.94rem;
+}
+
+.mobile-nav-sub .nav-mega-foot {
+  padding: 12px 14px;
+}
+
+.mobile-nav-call {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.mobile-nav-call svg {
+  flex: none;
+  color: var(--yellow);
+}
+
+.mobile-nav-call small {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a9bccf;
+}
+
+.mobile-nav-call strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Masaüstü genişliğinde panel hiç görünmez */
+@media (min-width: 1081px) {
+  .mobile-nav {
+    display: none;
   }
 }

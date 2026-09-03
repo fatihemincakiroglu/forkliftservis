@@ -144,8 +144,8 @@ export function organizationJsonLd() {
     logo: {
       "@type": "ImageObject",
       url: `${site.url}/logo/logo-tam.png`,
-      width: 1561,
-      height: 434,
+      width: 1794,
+      height: 578,
     },
     image: `${site.url}/logo/logo-tam.png`,
     email: site.email,
@@ -277,8 +277,8 @@ export function articleJsonLd({
       logo: {
         "@type": "ImageObject",
         url: `${site.url}/logo/logo-tam.png`,
-        width: 1561,
-        height: 434,
+        width: 1794,
+        height: 578,
       },
     },
     datePublished: site.contentPublished,

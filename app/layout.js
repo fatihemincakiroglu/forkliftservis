@@ -39,9 +39,13 @@ export const metadata = {
     title: "Forklift Servis ve Forklift Tamir Hizmeti",
     description:
       "Uzman forklift servis ve forklift tamir hizmeti ile arızalara hızlı çözüm sunuyoruz. Periyodik bakım, acil servis ve garantili onarım desteği.",
-    images: [{ url: "/logo/logo-tam.png", width: 1561, height: 434 }],
+    images: [{ url: "/logo/logo-tam.png", width: 1794, height: 578 }],
   },
   robots: { index: true, follow: true },
+  // Google Search Console mülk doğrulaması
+  verification: {
+    google: "hWxTn72oL5DzV3asxGHVD1WPPMJ5Gb2XkLZRteQYKzY",
+  },
   icons: {
     icon: [{ url: "/logo/simge.png", type: "image/png" }],
     apple: [{ url: "/logo/simge.png" }],

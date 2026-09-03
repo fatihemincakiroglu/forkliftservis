@@ -13,8 +13,8 @@ export default function Footer() {
             <Image
               src="/logo/logo-tam-beyaz.png"
               alt={site.name}
-              width={1561}
-              height={434}
+              width={1794}
+              height={578}
               className="footer-logo"
             />
             <p style={{ margin: "0 0 16px", maxWidth: "34ch" }}>

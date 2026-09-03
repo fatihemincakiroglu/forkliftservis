@@ -24,18 +24,19 @@ const links = [
 
 export default function Header() {
   const [open, setOpen] = useState(false); // mobil menü
-  const [subOpen, setSubOpen] = useState(false); // hizmetler alt menüsü
-  const [navTop, setNavTop] = useState(0); // menü panelinin başlayacağı yükseklik
+  const [subOpen, setSubOpen] = useState(false); // masaüstü hizmet paneli
+  const [mobileSub, setMobileSub] = useState(false); // mobil hizmet listesi
+  const [navTop, setNavTop] = useState(0);
   const closeTimer = useRef(null);
   const headerRef = useRef(null);
 
   const closeAll = () => {
     setOpen(false);
     setSubOpen(false);
+    setMobileSub(false);
   };
 
-  // Masaüstünde fare ayrılınca kısa gecikmeyle kapat,
-  // kullanıcı panele giderken menü kaybolmasın.
+  /* Masaüstü: fare ayrılınca kısa gecikmeyle kapat */
   const enter = () => {
     clearTimeout(closeTimer.current);
     setSubOpen(true);
@@ -47,34 +48,36 @@ export default function Header() {
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
   /**
-   * Mobil menü açıkken:
-   * - panel başlığın hemen altından başlar (ölçülerek belirlenir)
-   * - arka plandaki sayfa kaydırması kilitlenir, böylece panel
-   *   kendi içinde kaydırılabilir ve uzun listeler erişilebilir olur
+   * Mobil menü açıkken panelin başlayacağı yükseklik ölçülür ve
+   * arka plandaki sayfa kaydırması kilitlenir. Panel başlığın
+   * DIŞINDA render edilir; başlıktaki backdrop-filter, içindeki
+   * position:fixed öğeler için kapsayıcı blok oluşturduğu için
+   * panel başlığın içinde kalsaydı kaydırılamazdı.
    */
   useEffect(() => {
     if (!open) {
-      document.body.style.overflow = "";
+      document.body.classList.remove("nav-locked");
       return;
     }
 
     const measure = () => {
       const rect = headerRef.current?.getBoundingClientRect();
-      setNavTop(rect ? Math.max(0, rect.bottom) : 0);
+      setNavTop(rect ? Math.max(0, Math.round(rect.bottom)) : 0);
     };
 
     measure();
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("nav-locked");
     window.addEventListener("resize", measure);
     window.addEventListener("orientationchange", measure);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.classList.remove("nav-locked");
       window.removeEventListener("resize", measure);
       window.removeEventListener("orientationchange", measure);
     };
   }, [open]);
 
+  /* Escape ile kapat */
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") closeAll();
@@ -82,6 +85,49 @@ export default function Header() {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, []);
+
+  /* Masaüstüne geçilirse mobil menüyü kapat */
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1081px)");
+    const onChange = (e) => e.matches && closeAll();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  const serviceList = (
+    <div className="nav-mega-grid">
+      {serviceGroups.map((g) => (
+        <div className="nav-mega-col" key={g}>
+          <p className="nav-mega-title">{GROUP_LABEL[g]}</p>
+          <ul>
+            {services
+              .filter((s) => s.group === g)
+              .map((s) => (
+                <li key={s.slug}>
+                  <Link href={serviceHref(s.slug)} onClick={closeAll}>
+                    <Icon name={s.icon} size={17} />
+                    {s.name}
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+
+  const serviceFoot = (
+    <div className="nav-mega-foot">
+      <Link href="/hizmetlerimiz" onClick={closeAll}>
+        Tüm hizmetler
+        <Icon name="ok" size={15} />
+      </Link>
+      <Link href="/forklift-yedek-parca" onClick={closeAll}>
+        Forklift yedek parça
+        <Icon name="ok" size={15} />
+      </Link>
+    </div>
+  );
 
   return (
     <>
@@ -111,17 +157,15 @@ export default function Header() {
             <Image
               src="/logo/logo.png"
               alt={site.name}
-              width={1409}
-              height={326}
+              width={1794}
+              height={578}
               priority
               className="brand-logo"
             />
           </Link>
 
-          <nav
-            className={open ? "nav nav--open" : "nav"}
-            style={open ? { top: navTop } : undefined}
-          >
+          {/* Masaüstü menüsü */}
+          <nav className="nav" aria-label="Ana menü">
             {links.map((l) =>
               l.hasMenu ? (
                 <div
@@ -141,61 +185,19 @@ export default function Header() {
                       aria-label="Hizmet listesini aç veya kapat"
                       onClick={() => setSubOpen((v) => !v)}
                     >
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
+                      <Chevron />
                     </button>
                   </span>
 
                   {subOpen && (
                     <div className="nav-mega">
-                      <div className="nav-mega-grid">
-                        {serviceGroups.map((g) => (
-                          <div className="nav-mega-col" key={g}>
-                            <p className="nav-mega-title">{GROUP_LABEL[g]}</p>
-                            <ul>
-                              {services
-                                .filter((s) => s.group === g)
-                                .map((s) => (
-                                  <li key={s.slug}>
-                                    <Link
-                                      href={serviceHref(s.slug)}
-                                      onClick={closeAll}
-                                    >
-                                      <Icon name={s.icon} size={17} />
-                                      {s.name}
-                                    </Link>
-                                  </li>
-                                ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="nav-mega-foot">
-                        <Link href="/hizmetlerimiz" onClick={closeAll}>
-                          Tüm hizmetler
-                          <Icon name="ok" size={15} />
-                        </Link>
-                        <Link href="/forklift-yedek-parca" onClick={closeAll}>
-                          Forklift yedek parça
-                          <Icon name="ok" size={15} />
-                        </Link>
-                      </div>
+                      {serviceList}
+                      {serviceFoot}
                     </div>
                   )}
                 </div>
               ) : (
-                <Link key={l.href} href={l.href} onClick={closeAll}>
+                <Link key={l.href} href={l.href}>
                   {l.label}
                 </Link>
               )
@@ -211,6 +213,7 @@ export default function Header() {
               className="nav-toggle"
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
+              aria-controls="mobil-menu"
               aria-label="Menüyü aç veya kapat"
             >
               {open ? "Kapat" : "Menü"}
@@ -218,6 +221,91 @@ export default function Header() {
           </div>
         </div>
       </header>
+
+      {/* ------------------------------------------------------------
+          MOBİL MENÜ
+          Başlığın dışında, doğrudan sayfa köküne yakın render edilir.
+          Böylece kapsayıcı blok viewport olur ve panel kendi içinde
+          sorunsuz kaydırılır.
+         ------------------------------------------------------------ */}
+      {open && (
+        <div
+          className="mobile-nav"
+          id="mobil-menu"
+          style={{ top: navTop }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menü"
+        >
+          <div className="mobile-nav-scroll">
+            <ul className="mobile-nav-list">
+              {links.map((l) =>
+                l.hasMenu ? (
+                  <li key={l.href} className="mobile-nav-item">
+                    <div className="mobile-nav-row">
+                      <Link href={l.href} onClick={closeAll}>
+                        {l.label}
+                      </Link>
+                      <button
+                        type="button"
+                        className={`mobile-nav-toggle${
+                          mobileSub ? " is-open" : ""
+                        }`}
+                        aria-expanded={mobileSub}
+                        aria-label="Hizmet listesini aç veya kapat"
+                        onClick={() => setMobileSub((v) => !v)}
+                      >
+                        <Chevron />
+                      </button>
+                    </div>
+
+                    {mobileSub && (
+                      <div className="mobile-nav-sub">
+                        {serviceList}
+                        {serviceFoot}
+                      </div>
+                    )}
+                  </li>
+                ) : (
+                  <li key={l.href} className="mobile-nav-item">
+                    <div className="mobile-nav-row">
+                      <Link href={l.href} onClick={closeAll}>
+                        {l.label}
+                      </Link>
+                    </div>
+                  </li>
+                )
+              )}
+            </ul>
+
+            <a className="mobile-nav-call" href={`tel:${site.phoneHref}`}>
+              <Icon name="telefon" size={18} />
+              <span>
+                <small>Arıza bildirimi ve 7/24 acil hat</small>
+                <strong>{site.phoneDisplay}</strong>
+              </span>
+            </a>
+          </div>
+        </div>
+      )}
     </>
+  );
+}
+
+function Chevron() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
   );
 }

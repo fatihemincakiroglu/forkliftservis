@@ -2,6 +2,19 @@ import Link from "next/link";
 import { site, faults, process, maintenanceScope } from "@/lib/site";
 import { services, serviceHref } from "@/lib/services";
 import { faqs } from "@/lib/faqs";
+import {
+  opening,
+  openingHighlight,
+  onSite,
+  diagnosis,
+  fuelTypes,
+  earlySigns,
+  whyQuestions,
+  maintenanceValue,
+  pricing,
+  requestInfo,
+  extraFaqs,
+} from "@/lib/homeContent";
 import ServiceNetwork from "@/components/ServiceNetwork";
 import { CtaBand } from "@/components/CtaBand";
 import { FaqList, JsonLd, webPageJsonLd } from "@/components/Seo";
@@ -29,9 +42,13 @@ export default function Home() {
     <>
       <HeroSlider />
 
+      <div className="hazard" aria-hidden="true" />
 
       {/* ---------- GÜVEN ŞERİDİ ---------- */}
-      <section className="section" style={{ paddingBlock: "clamp(40px,5vw,60px)" }}>
+      <section
+        className="section"
+        style={{ paddingBlock: "clamp(40px,5vw,60px)" }}
+      >
         <div className="shell">
           <div className="stats">
             <div className="stat">
@@ -49,7 +66,7 @@ export default function Home() {
               </span>
               <span className="stat-value">Tüm markalar</span>
               <span className="stat-label">
-                Dizel, LPG ve akülü forklift, transpalet ve istif makinesi
+                Dizel, LPG ve akülü forklift, transpalet, istif makinesi
               </span>
             </div>
             <div className="stat">
@@ -74,8 +91,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------- AÇILIŞ METNİ ---------- */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="shell">
+          <div className="intro-block">
+            <div className="intro-text">
+              <p className="eyebrow">Forklift servis, bakım ve tamir</p>
+              {opening.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+            <aside className="intro-aside">
+              <span className="intro-aside-icon">
+                <Icon name="garanti" size={22} />
+              </span>
+              <p>{openingHighlight}</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
       {/* ---------- İKİ ANA HİZMET ---------- */}
-      <section className="section">
+      <section className="section section--concrete">
         <div className="shell">
           <div className="section-head">
             <p className="eyebrow">Ne yapıyoruz</p>
@@ -122,7 +159,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------- MAKİNE TİPLERİ ---------- */}
+      {/* ---------- YERİNDE SERVİS ---------- */}
+      <section className="section">
+        <div className="shell split">
+          <div>
+            <p className="eyebrow">Yerinde forklift servisi</p>
+            <h2 className="h2">Makineyi taşımak yerine ekibi gönderiyoruz</h2>
+            {onSite.intro.map((p, i) => (
+              <p className="lede" key={i}>
+                {p}
+              </p>
+            ))}
+          </div>
+
+          <div className="onsite-card">
+            <p className="onsite-title">
+              <Icon name="arac" size={17} />
+              Yerinde servisin avantaj sağladığı durumlar
+            </p>
+            <ul className="checklist" style={{ gridTemplateColumns: "1fr" }}>
+              {onSite.advantages.map((a) => (
+                <li key={a}>
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="onsite-note">{onSite.note}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- MAKİNE PARKI ---------- */}
       <section className="section section--concrete">
         <div className="shell">
           <div className="section-head">
@@ -159,6 +226,42 @@ export default function Home() {
               },
             ]}
           />
+        </div>
+      </section>
+
+      {/* ---------- YAKIT TİPİNE GÖRE ---------- */}
+      <section className="section">
+        <div className="shell">
+          <div className="section-head">
+            <p className="eyebrow">Yakıt tipine göre servis</p>
+            <h2 className="h2">Elektrikli, dizel ve LPG forkliftler</h2>
+            <p className="lede">
+              Üç grubun arıza dağılımı birbirinden farklıdır. Bu yüzden bakım
+              listesi de makinenin yakıt tipine göre değişir.
+            </p>
+          </div>
+
+          <div className="fuel-grid">
+            {fuelTypes.map((f) => (
+              <article className="fuel-card" key={f.slug}>
+                <span className="fuel-icon">
+                  <Icon name={f.icon} size={26} />
+                </span>
+                <h3 className="h3">{f.name}</h3>
+                <p className="fuel-lede">{f.lede}</p>
+                <p className="fuel-detail">{f.detail}</p>
+                <p className="fuel-points-title">Kontrol edilen bölümler</p>
+                <ul className="fuel-points">
+                  {f.points.map((x) => (
+                    <li key={x}>{x}</li>
+                  ))}
+                </ul>
+                <Link className="card-link" href={`/${f.slug}`}>
+                  Ayrıntılara bak <Icon name="ok" size={16} />
+                </Link>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -199,8 +302,53 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------- ARIZA TESPİTİ ---------- */}
+      <section className="section section--concrete">
+        <div className="shell">
+          <div className="section-head">
+            <p className="eyebrow">Arıza tespiti</p>
+            <h2 className="h2">Belirti her zaman arızanın kaynağı değildir</h2>
+            {diagnosis.intro.map((x, i) => (
+              <p className="lede" key={i}>
+                {x}
+              </p>
+            ))}
+          </div>
+
+          <div className="diag-grid">
+            <div className="diag-table">
+              <div className="diag-table-head">
+                <span>Belirti</span>
+                <span>Olası kontrol alanı</span>
+              </div>
+              {diagnosis.table.map((r) => (
+                <div className="diag-row" key={r.s}>
+                  <span className="diag-symptom">{r.s}</span>
+                  <span className="diag-zone">{r.z}</span>
+                </div>
+              ))}
+              <p className="diag-note">{diagnosis.note}</p>
+            </div>
+
+            <div className="early-card">
+              <p className="early-title">
+                <Icon name="teshis" size={17} />
+                Erken uyarı belirtileri
+              </p>
+              <p className="early-intro">{earlySigns.intro}</p>
+              <ul className="early-list">
+                {earlySigns.items.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+              <p className="early-note">{earlySigns.note}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ---------- SÜREÇ ---------- */}
-      <section className="section section--dark" style={{ paddingTop: 0 }}>
+      <section className="section section--dark">
         <div className="shell">
           <div className="section-head">
             <p className="eyebrow">Bir arıza çağrısı nasıl ilerler</p>
@@ -281,8 +429,83 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------- BÖLGELER ---------- */}
+      {/* ---------- BAKIMIN FAYDASI ---------- */}
+      <section className="section section--dark">
+        <div className="shell">
+          <div className="section-head">
+            <p className="eyebrow">İşletmeye katkısı</p>
+            <h2 className="h2">Planlı bakım neyi değiştirir</h2>
+            <p className="lede">{maintenanceValue.intro}</p>
+          </div>
+
+          <div className="value-grid">
+            {maintenanceValue.items.map((v, i) => (
+              <div className="value-item" key={v.t}>
+                <span className="value-num">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <strong>{v.t}</strong>
+                  <span>{v.d}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- NEDEN SORULARI ---------- */}
+      <section className="section">
+        <div className="shell">
+          <div className="section-head">
+            <p className="eyebrow">En sık gelen sorular</p>
+            <h2 className="h2">Telefonda ilk sorulan dört soru</h2>
+          </div>
+
+          <div className="why-grid">
+            {whyQuestions.map((w) => (
+              <article className="why-card" key={w.q}>
+                <span className="why-icon">
+                  <Icon name={w.icon} size={24} />
+                </span>
+                <h3 className="why-q">{w.q}</h3>
+                <p className="why-a">{w.a}</p>
+                <Link className="card-link" href={w.href}>
+                  {w.label} <Icon name="ok" size={16} />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- FİYATLANDIRMA ---------- */}
       <section className="section section--concrete">
+        <div className="shell split">
+          <div>
+            <p className="eyebrow">Servis fiyatları</p>
+            <h2 className="h2">Fiyatı belirleyen beş etken</h2>
+            <p className="lede">{pricing.intro}</p>
+
+            <div className="price-note">
+              <Icon name="garanti" size={19} />
+              <p>{pricing.note}</p>
+            </div>
+          </div>
+
+          <div className="price-list">
+            {pricing.factors.map((f) => (
+              <div className="price-item" key={f.t}>
+                <strong>{f.t}</strong>
+                <span>{f.d}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- BÖLGELER ---------- */}
+      <section className="section">
         <div className="shell">
           <div className="section-head">
             <p className="eyebrow">Servis ağı</p>
@@ -297,6 +520,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------- MARKALAR ---------- */}
+      <section className="section section--dark">
+        <div className="shell">
+          <div className="section-head">
+            <p className="eyebrow">Servis verdiğimiz markalar</p>
+            <h2 className="h2">Marka fark etmez, künye numarası yeter</h2>
+            <p className="lede">
+              Aşağıdaki markaların yanı sıra listede olmayan modeller için de
+              arayın; parça temini mümkünse net bir süre veririz.
+            </p>
+          </div>
+          <div className="brands">
+            {site.brands.map((b) => (
+              <span key={b}>{b}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- SERVİS TALEBİ ---------- */}
+      <section className="section section--concrete">
+        <div className="shell">
+          <div className="request-card">
+            <div className="request-text">
+              <p className="eyebrow">Servis talebi</p>
+              <h2 className="h2">Ararken elinizde şunlar olsun</h2>
+              <p className="lede">
+                Aşağıdaki bilgileri baştan iletirseniz ekip yola çıkmadan önce
+                olası parçayı belirleyip araca yükleyebiliyoruz. Bu, tek gelişte
+                kapanan iş oranını belirgin biçimde yükseltiyor.
+              </p>
+              <div className="btn-row">
+                <a className="btn btn--signal" href={`tel:${site.phoneHref}`}>
+                  <Icon name="telefon" size={17} />
+                  {site.phoneDisplay}
+                </a>
+                <Link className="btn btn--outline" href="/iletisim">
+                  Teklif formu
+                </Link>
+              </div>
+            </div>
+
+            <ol className="request-list">
+              {requestInfo.map((r, i) => (
+                <li key={r}>
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                  {r}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
       {/* ---------- SSS ---------- */}
       <section className="section">
         <div className="shell">
@@ -304,7 +581,7 @@ export default function Home() {
             <p className="eyebrow">Sıkça sorulan sorular</p>
             <h2 className="h2">Telefonda en çok sorulanlar</h2>
           </div>
-          <FaqList items={faqs} />
+          <FaqList items={[...faqs, ...extraFaqs]} />
         </div>
       </section>
 

@@ -78,17 +78,12 @@ export default function FloatingContact() {
         </div>
       </div>
 
-      {/* ---------- MOBİL: ekranın altında yüzen çubuk ---------- */}
+      {/* ---------- MOBİL: ekranın altında sabit çubuk ---------- */}
       <div className="mobile-bar">
         <div className="mobile-bar-inner">
           <a className="mobile-bar-btn mobile-bar-btn--tel" href={telHref}>
-            <span className="mobile-bar-icon">
-              <Icon name="telefon" size={17} />
-            </span>
-            <span className="mobile-bar-text">
-              <span className="mobile-bar-label">Hemen Ara</span>
-              <span className="mobile-bar-sub">{site.phoneDisplay}</span>
-            </span>
+            <Icon name="telefon" size={18} />
+            Hemen Ara
           </a>
 
           <a
@@ -97,13 +92,8 @@ export default function FloatingContact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="mobile-bar-icon">
-              <WhatsAppIcon size={17} />
-            </span>
-            <span className="mobile-bar-text">
-              <span className="mobile-bar-label">WhatsApp</span>
-              <span className="mobile-bar-sub">Mesaj gönderin</span>
-            </span>
+            <WhatsAppIcon size={18} />
+            WhatsApp
           </a>
         </div>
       </div>

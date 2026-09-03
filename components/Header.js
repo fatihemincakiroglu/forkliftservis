@@ -25,7 +25,9 @@ const links = [
 export default function Header() {
   const [open, setOpen] = useState(false); // mobil menü
   const [subOpen, setSubOpen] = useState(false); // hizmetler alt menüsü
+  const [navTop, setNavTop] = useState(0); // menü panelinin başlayacağı yükseklik
   const closeTimer = useRef(null);
+  const headerRef = useRef(null);
 
   const closeAll = () => {
     setOpen(false);
@@ -43,6 +45,35 @@ export default function Header() {
   };
 
   useEffect(() => () => clearTimeout(closeTimer.current), []);
+
+  /**
+   * Mobil menü açıkken:
+   * - panel başlığın hemen altından başlar (ölçülerek belirlenir)
+   * - arka plandaki sayfa kaydırması kilitlenir, böylece panel
+   *   kendi içinde kaydırılabilir ve uzun listeler erişilebilir olur
+   */
+  useEffect(() => {
+    if (!open) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    const measure = () => {
+      const rect = headerRef.current?.getBoundingClientRect();
+      setNavTop(rect ? Math.max(0, rect.bottom) : 0);
+    };
+
+    measure();
+    document.body.style.overflow = "hidden";
+    window.addEventListener("resize", measure);
+    window.addEventListener("orientationchange", measure);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("orientationchange", measure);
+    };
+  }, [open]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -69,7 +100,7 @@ export default function Header() {
         </div>
       </div>
 
-      <header className="site-header">
+      <header className="site-header" ref={headerRef}>
         <div className="shell header-inner">
           <Link
             href="/"
@@ -87,7 +118,10 @@ export default function Header() {
             />
           </Link>
 
-          <nav className={open ? "nav nav--open" : "nav"}>
+          <nav
+            className={open ? "nav nav--open" : "nav"}
+            style={open ? { top: navTop } : undefined}
+          >
             {links.map((l) =>
               l.hasMenu ? (
                 <div

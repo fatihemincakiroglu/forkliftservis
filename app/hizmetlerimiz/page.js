@@ -7,6 +7,7 @@ import {
   JsonLd,
   itemListJsonLd,
   offerCatalogJsonLd,
+  webPageJsonLd,
 } from "@/components/Seo";
 import Icon from "@/components/Icons";
 import PageHeader from "@/components/PageHeader";
@@ -109,6 +110,14 @@ export default function HizmetlerPage() {
             name: s.title,
             href: serviceHref(s.slug),
           })),
+        })}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          name: "Forklift tamiri ve periyodik bakım",
+          description:
+            "Forklift motor, şanzıman, hidrolik ve kart tamiri ile periyodik bakım hizmetleri.",
+          url: "/hizmetlerimiz",
         })}
       />
     </>

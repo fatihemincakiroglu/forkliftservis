@@ -4,7 +4,12 @@ import { CtaBand } from "@/components/CtaBand";
 import Icon from "@/components/Icons";
 import Figure from "@/components/Figure";
 import PageHeader from "@/components/PageHeader";
-import { JsonLd, itemListJsonLd, serviceJsonLd } from "@/components/Seo";
+import {
+  JsonLd,
+  itemListJsonLd,
+  serviceJsonLd,
+  webPageJsonLd,
+} from "@/components/Seo";
 
 export const metadata = {
   title: "Forklift Yedek Parça",
@@ -168,6 +173,14 @@ export default function YedekParca() {
             name: c.title,
             href: "/forklift-yedek-parca",
           })),
+        })}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          name: "Forklift yedek parça",
+          description:
+            "Forklift hidrolik, motor, şanzıman, elektrik ve mast grubu yedek parçaları.",
+          url: "/forklift-yedek-parca",
         })}
       />
     </>

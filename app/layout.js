@@ -3,7 +3,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
 import { site } from "@/lib/site";
-import { JsonLd, organizationJsonLd, websiteJsonLd } from "@/components/Seo";
+import {
+  JsonLd,
+  organizationJsonLd,
+  personJsonLd,
+  websiteJsonLd,
+} from "@/components/Seo";
 
 export const metadata = {
   metadataBase: new URL(site.url),
@@ -80,6 +85,7 @@ export default function RootLayout({ children }) {
     ],
     openingHours: "Mo-Sa 08:30-18:30",
     priceRange: "$$",
+    logo: `${site.url}/logo/logo-tam.png`,
   };
 
   return (
@@ -104,6 +110,7 @@ export default function RootLayout({ children }) {
         <JsonLd data={jsonLd} />
         <JsonLd data={organizationJsonLd()} />
         <JsonLd data={websiteJsonLd()} />
+        <JsonLd data={personJsonLd()} />
       </body>
     </html>
   );

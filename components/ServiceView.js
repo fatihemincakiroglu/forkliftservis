@@ -9,7 +9,12 @@ import {
   decisionRows,
 } from "@/lib/serviceContent";
 import { CtaBand } from "@/components/CtaBand";
-import { JsonLd, FaqList, serviceJsonLd } from "@/components/Seo";
+import {
+  JsonLd,
+  FaqList,
+  articleJsonLd,
+  serviceJsonLd,
+} from "@/components/Seo";
 import Icon from "@/components/Icons";
 import PageHeader from "@/components/PageHeader";
 import Figure from "@/components/Figure";
@@ -446,6 +451,19 @@ export default function ServiceView({ service: s }) {
           url: serviceHref(s.slug),
         })}
       />
+
+      {/* Uzun içerikli sayfalarda makale şeması: yazar ve yayıncı bilgisi */}
+      {(c || m) && (
+        <JsonLd
+          data={articleJsonLd({
+            headline: s.title,
+            description: s.description,
+            url: serviceHref(s.slug),
+            image: s.image?.src,
+            section: s.group,
+          })}
+        />
+      )}
     </>
   );
 }

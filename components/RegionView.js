@@ -14,6 +14,7 @@ import {
   LinkChips,
   itemListJsonLd,
   serviceJsonLd,
+  webPageJsonLd,
 } from "@/components/Seo";
 import PageHeader from "@/components/PageHeader";
 
@@ -239,6 +240,13 @@ export default function RegionView({ region: r }) {
 
       <CtaBand title={`${r.name} forklift servisi için arayın`} />
 
+      <JsonLd
+        data={webPageJsonLd({
+          name: `${r.name} Forklift Servisi`,
+          description: `${r.name} bölgesinde forklift servis ve forklift tamir hizmeti.`,
+          url: regionHref(isCity ? city.slug : r.districtSlug),
+        })}
+      />
       <JsonLd
         data={serviceJsonLd({
           name: `${r.name} Forklift Servisi`,

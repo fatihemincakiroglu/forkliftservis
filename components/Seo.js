@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 
+/* Derleme anının tarihi. Her yayında güncellenir,
+   dateModified alanı bu değeri kullanır. */
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
+
 /* --------- Yapısal veri (JSON-LD) --------- */
 export function JsonLd({ data }) {
   return (
@@ -49,6 +53,9 @@ export function FaqList({ items, withSchema = true }) {
   const data = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    inLanguage: "tr-TR",
+    author: { "@id": `${site.url}/#author` },
+    publisher: { "@id": `${site.url}/#organization` },
     mainEntity: items.map((f) => ({
       "@type": "Question",
       name: f.q,
@@ -95,9 +102,11 @@ export function serviceJsonLd({ name, description, areaName, url }) {
     url: `${site.url}${url}`,
     provider: {
       "@type": "AutoRepair",
+      "@id": `${site.url}/#organization`,
       name: site.name,
       telephone: site.phoneHref,
       url: site.url,
+      logo: `${site.url}/logo/logo-tam.png`,
     },
     areaServed: areaName
       ? { "@type": "Place", name: areaName }
@@ -110,7 +119,20 @@ export function serviceJsonLd({ name, description, areaName, url }) {
    Google'ın sayfayı doğru sınıflandırması için kullanılır.
    ============================================================ */
 
-/** Kuruluş kimliği — her sayfada yayınlanır */
+/** Yazar kimliği. Diğer şemalar bu düğüme @id ile bağlanır. */
+export function personJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${site.url}/#author`,
+    name: site.author.name,
+    url: site.author.url,
+    jobTitle: site.author.jobTitle,
+    sameAs: [site.author.url],
+  };
+}
+
+/** Kuruluş kimliği. Her sayfada yayınlanır */
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -119,7 +141,13 @@ export function organizationJsonLd() {
     name: site.name,
     legalName: site.legalName,
     url: site.url,
-    logo: `${site.url}/logo/logo-tam.png`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${site.url}/logo/logo-tam.png`,
+      width: 1561,
+      height: 434,
+    },
+    image: `${site.url}/logo/logo-tam.png`,
     email: site.email,
     telephone: site.phoneHref,
     foundingDate: String(site.foundedYear),
@@ -151,6 +179,7 @@ export function websiteJsonLd() {
     name: site.name,
     inLanguage: "tr-TR",
     publisher: { "@id": `${site.url}/#organization` },
+    author: { "@id": `${site.url}/#author` },
   };
 }
 
@@ -205,6 +234,55 @@ export function webPageJsonLd({ type = "WebPage", name, description, url }) {
     url: `${site.url}${url}`,
     inLanguage: "tr-TR",
     isPartOf: { "@id": `${site.url}/#website` },
+    author: { "@id": `${site.url}/#author` },
     publisher: { "@id": `${site.url}/#organization` },
+    datePublished: site.contentPublished,
+    dateModified: BUILD_DATE,
+  };
+}
+
+/**
+ * Uzun içerikli sayfalar için makale şeması.
+ * Google'ın "Author / Publisher eksik" uyarısını karşılar.
+ */
+export function articleJsonLd({
+  headline,
+  description,
+  url,
+  image,
+  section,
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": `${site.url}${url}#article`,
+    headline,
+    description,
+    url: `${site.url}${url}`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${site.url}${url}` },
+    inLanguage: "tr-TR",
+    articleSection: section,
+    image: image ? `${site.url}${image}` : `${site.url}/logo/logo-tam.png`,
+    author: {
+      "@type": "Person",
+      "@id": `${site.url}/#author`,
+      name: site.author.name,
+      url: site.author.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${site.url}/logo/logo-tam.png`,
+        width: 1561,
+        height: 434,
+      },
+    },
+    datePublished: site.contentPublished,
+    dateModified: BUILD_DATE,
+    isPartOf: { "@id": `${site.url}/#website` },
   };
 }

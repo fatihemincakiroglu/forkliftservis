@@ -4,7 +4,7 @@ import { services, serviceHref } from "@/lib/services";
 import { faqs } from "@/lib/faqs";
 import ServiceNetwork from "@/components/ServiceNetwork";
 import { CtaBand } from "@/components/CtaBand";
-import { FaqList } from "@/components/Seo";
+import { FaqList, JsonLd, webPageJsonLd } from "@/components/Seo";
 import Icon from "@/components/Icons";
 import HeroSlider from "@/components/HeroSlider";
 import Figure, { FigureStrip } from "@/components/Figure";
@@ -309,6 +309,15 @@ export default function Home() {
       </section>
 
       <CtaBand />
+
+      <JsonLd
+        data={webPageJsonLd({
+          name: "Forklift Servis ve Forklift Tamir Hizmeti",
+          description:
+            "Türkiye genelinde forklift servis ve forklift tamir hizmeti, periyodik bakım ve yedek parça.",
+          url: "/",
+        })}
+      />
     </>
   );
 }

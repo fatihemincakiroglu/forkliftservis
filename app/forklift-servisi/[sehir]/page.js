@@ -12,7 +12,8 @@ export function generateStaticParams() {
   return cities.map((c) => ({ sehir: c.slug }));
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const c = getCity(params.sehir);
   if (!c) return {};
   const title = `${c.name} Forklift Servisi`;
@@ -25,7 +26,8 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function CityPage({ params }) {
+export default async function CityPage(props) {
+  const params = await props.params;
   const c = getCity(params.sehir);
   if (!c) notFound();
 

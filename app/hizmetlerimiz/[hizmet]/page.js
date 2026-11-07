@@ -11,7 +11,8 @@ export function generateStaticParams() {
   return services.map((s) => ({ hizmet: s.slug }));
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const s = getService(params.hizmet);
   if (!s) return {};
   return {
@@ -22,7 +23,8 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function ServicePage({ params }) {
+export default async function ServicePage(props) {
+  const params = await props.params;
   const s = getService(params.hizmet);
   if (!s) notFound();
 

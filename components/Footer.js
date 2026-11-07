@@ -111,7 +111,11 @@ export default function Footer() {
           <span>
             © {new Date().getFullYear()} {site.legalName}
           </span>
-          <span>Tüm hakları saklıdır.</span>
+          <span>
+            <a href="https://fatihemincakiroglu.com/geo-uzmani" target="_blank">
+              GEO Uzmanı
+            </a>
+          </span>
         </div>
       </div>
     </footer>

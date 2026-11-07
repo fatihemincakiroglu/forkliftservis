@@ -17,7 +17,8 @@ export function generateStaticParams() {
   return params;
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const c = getCity(params.sehir);
   const d = getDistrict(params.sehir, params.ilce);
   if (!c || !d) return {};
@@ -31,7 +32,8 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function DistrictPage({ params }) {
+export default async function DistrictPage(props) {
+  const params = await props.params;
   const c = getCity(params.sehir);
   const d = getDistrict(params.sehir, params.ilce);
   if (!c || !d) notFound();

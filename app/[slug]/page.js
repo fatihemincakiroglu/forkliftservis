@@ -14,7 +14,8 @@ export function generateStaticParams() {
   ];
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const region = getRegionPage(params.slug);
 
   if (region) {
@@ -55,7 +56,8 @@ export function generateMetadata({ params }) {
   return {};
 }
 
-export default function Page({ params }) {
+export default async function Page(props) {
+  const params = await props.params;
   const region = getRegionPage(params.slug);
   if (region) return <RegionView region={region} />;
 

@@ -12,7 +12,8 @@ export function generateStaticParams() {
   return brands.map((b) => ({ marka: b.slug }));
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const b = getBrand(params.marka);
   if (!b) return {};
   const title = `${b.name} Forklift Servisi`;
@@ -25,7 +26,8 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function BrandPage({ params }) {
+export default async function BrandPage(props) {
+  const params = await props.params;
   const b = getBrand(params.marka);
   if (!b) notFound();
   const others = brands.filter((x) => x.slug !== b.slug);
